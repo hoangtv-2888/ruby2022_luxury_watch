@@ -8,6 +8,15 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+require("./jquery-1.11.0.min")
+require("./flexslider.js")
+require("./imagezoom.js")
+require("./memenu.js")
+require("./jquery.easydropdown.js")
+require("./custom.js")
+
+import "bootstrap/dist/css/bootstrap"
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
