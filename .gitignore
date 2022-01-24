@@ -55,3 +55,16 @@ config/credentials.yml.enc
 test
 spec
 .browserslistrc
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+.vscode/*
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
