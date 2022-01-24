@@ -11,5 +11,9 @@ Rails.application.routes.draw do
 
     resources :users
     resources :products
+
+    namespace :admin do
+      root "admin#index"
+    end
   end
 end

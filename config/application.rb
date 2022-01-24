@@ -11,9 +11,6 @@ module Ruby2022LuxuryWatch
     config.i18n.available_locales = [:en, :vi]
     config.i18n.default_locale = :en
 
-    Bundler.require(*Rails.groups)
-    Config::Integration::Rails::Railtie.preload
-
     config.time_zone = Settings.time_zone
   end
 end
