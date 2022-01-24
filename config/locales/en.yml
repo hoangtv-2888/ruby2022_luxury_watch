@@ -22,3 +22,6 @@ en:
   fax: "Fax"
   email: "Email"
   store_information: "Store Information"
+  admin:
+    title: "Dashboard"
+    login: "Login"

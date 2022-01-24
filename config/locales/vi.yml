@@ -22,3 +22,6 @@ vi:
   fax: "Số fax"
   email: "E-mail"
   store_information: "Lưu trữ thông tin"
+  admin:
+    title: "Bảng điều khiển"
+    login: "Đăng nhập"
