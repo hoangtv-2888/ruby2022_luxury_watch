@@ -62,3 +62,5 @@ en:
       error: "error"
       user:
         not_found: "Not found user"
+  explore_now: "Explore Now"
+  contact_now: "Contact now!"
