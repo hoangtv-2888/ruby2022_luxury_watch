@@ -2,20 +2,29 @@
   <div class="container">
     <div class="top-header-main">
       <div class="col-md-8 top-header-left">
-        <div class="drop">
-          <div class="box">
-            <%= link_to t("login"), contact_path %>
-          </div>
-          <div class="box">
-            <%= link_to t("singup"), contact_path %>
-          </div>
-          <div class="box">
-            <%= link_to t("english"), locale: :en %>
-          </div>
-          <div class="box">
-            <%= link_to t("vietnamese"), locale: :vi %>
-          </div>
-          <div class="clearfix"></div>
+        <div class="box" id="choose-language">
+          <span><%= t "languages" %></span>
+          <ul class="sub-language">
+            <li><%= link_to t("english"), locale: :en %></li>
+            <li><%= link_to t("vietnamese"), locale: :vi %></li>
+          </ul>
+        </div>
+        <div class="box" id="profile">
+          <span><%= t "profile" %></span>
+          <ul class="sub-profile">
+            <% if logged_in? %>
+              <li><%= link_to t("logout"), logout_path, method: :delete %></li>
+              <li><%= current_user.name %></li>
+            <% else %>
+              <li><%= link_to t("login"), login_path %></li>
+              <li><%= link_to t("singup"), signup_path %></li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="box">
+          <% if logged_in? %>
+            <span><%= current_user.name %></span>
+          <% end %>
         </div>
       </div>
       <div class="col-md-4 top-header-left">

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'password_resets/new'
+  get 'password_resets/edit'
   scope "(:locale)", locale: /en|vi/ do
     root "homes#index"
 
@@ -10,6 +12,8 @@ Rails.application.routes.draw do
     get "/contact", to: "homes#contact"
 
     resources :users
+    resources :account_activations, only: :edit
+    resources :password_resets, except: %i(index destroy)
     resources :products
 
     namespace :admin do

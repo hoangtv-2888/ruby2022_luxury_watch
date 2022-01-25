@@ -1,0 +1,17 @@
+<% provide :button_text, t("forgot_password") %>
+<div class="register">
+  <div class="container">
+    <div class="register-top heading">
+      <h2><%= t "forgot_password" %></h2>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <%= form_for :password_reset, url: password_resets_path do |f| %>
+          <%= f.label t("email") %>
+          <%= f.email_field :email, class: "form-control" %>
+          <%= f.submit t("submit"), class: "btn btn-primary address" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
