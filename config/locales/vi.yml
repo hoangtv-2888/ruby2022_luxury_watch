@@ -29,6 +29,7 @@ vi:
   logout: "Đăng xuất"
   forgot_password: "Quên mật khẩu"
   submit: "Gửi đi"
+  update: "Cập nhật"
   update_password: "Cập nhật mật khẩu"
   password_reseted: "Mật khẩu đã được đặt lại."
   reset_failed: "Đặt lại không thành công"
@@ -57,5 +58,11 @@ vi:
     activate: "Kích hoạt"
     click_link_to_activate: "Chào mừng bạn đến với Ứng dụng mẫu!
                            Nhấp vào liên kết bên dưới để kích hoạt tài khoản của bạn:"
+    settigns: "Cài đặt"
+    error:
+      error_valid: "Biểu mẫu chứa %{error}"
+      error: "Lỗi"
+      user:
+        not_found: "Không tìm thấy người dùng"
   explore_now: "Khám phá ngay"
   contact_now: "Liên hệ!"
