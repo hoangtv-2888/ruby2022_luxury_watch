@@ -1,11 +1,15 @@
-<div class="product-main simpleCart_shelfItem">
-  <a href="single.html" class="mask"><%= image_tag "p-1.png", class: "img-responsive zoom-img" %></a>
-  <div class="product-bottom">
-    <h3>Smart Watches</h3>
-    <p>Explore Now</p>
-    <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
-  </div>
-  <div class="srch srch1">
-    <span>-50%</span>
+<div class="col-md-3 product-left">
+  <div class="product-main simpleCart_shelfItem">
+    <%= image_tag "p-1.png", class: "img-responsive zoom-img" %>
+    <div class="product-bottom">
+      <h3><%= link_to product.name, product %></h3>
+      <p><%= t "explore_now" %></p>
+      <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">
+        <%= product.product_detail.any? ? number_to_currency(product.product_detail.first.price) : t("contact_now") %>
+      </span></h4>
+    </div>
+    <div class="srch srch1">
+      <span>-50%</span>
+    </div>
   </div>
 </div>
