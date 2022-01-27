@@ -42,6 +42,8 @@ en:
   admin:
     title: "Dashboard"
     login: "Login"
+    admin: "Admin page"
+    not_admin: "You do not have permission to access this site"
   user:
     name: "Name"
     email: "Email"
@@ -56,8 +58,10 @@ en:
     activated: "Activated"
     activated_failed: "Activated failed"
     activate: "Activate"
+    unactivate : "Unactivate"
     click_link_to_activate: "Welcome to the Sample App!
                           Click on the link below to activate your account:"
+    not_correct_user: "Incorrect account"
     settings: "Settings"
     error:
       error_valid: "The form contains %{error}"
@@ -81,3 +85,6 @@ en:
   by_cost: "By Cost"
   asc: "Ascending"
   desc: "Descending"
+  STT: "STT"
+  all_users: "All users"
+  please_login: "You are not logged in"

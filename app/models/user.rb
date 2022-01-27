@@ -3,8 +3,11 @@ class User < ApplicationRecord
   has_many :comment_rates, dependent: :destroy
   has_many :products, through: :comment_rates
 
+  enum role: {user: Settings.user, admin: Settings.admin}
+
   attr_accessor :remember_token, :activation_token, :reset_token
 
+  scope :newest, ->{order created_at: :desc}
   before_create :create_activation_digest
   before_save :downcase_email
 
@@ -44,6 +47,10 @@ class User < ApplicationRecord
 
   def activate
     update_columns activated: true, activated_at: Time.zone.now
+  end
+
+  def unactivate
+    update_columns activated: false, activated_at: Time.zone.now
   end
 
   def send_active_mail
