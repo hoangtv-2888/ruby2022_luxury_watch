@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :account_activations, only: :edit
     resources :password_resets, except: %i(index destroy)
     resources :products
+    resources :homes, only: :index
 
     namespace :admin do
       root "admin#index"
