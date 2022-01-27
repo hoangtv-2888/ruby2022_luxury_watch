@@ -1,0 +1,104 @@
+<div class="single contact">
+  <div class="container">
+    <div class="single-main">
+      <div class="col-md-9 single-main-left">
+        <div class="sngl-top">
+          <div class="col-md-5 single-top-left">
+            <div class="flexslider">
+              <ul class="slides">
+                <li data-thumb="images/p-1.png">
+                  <div class="thumb-image"> <%= image_tag "p-1.png", class: "img-responsive" %> </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-7 single-top-right">
+            <div class="single-para simpleCart_shelfItem">
+              <h2><%= @product.name %></h2>
+              <div class="star-on">
+                <ul class="star-footer">
+                  <% 5.times do %>
+                    <li><a href="#"><%= image_tag "star.png"%></a></li>
+                  <% end %>
+                </ul>
+                <div class="review">
+                  <a href="#"> 1 <%= t "review" %>  </a>
+                </div>
+                <div class="clearfix"> </div>
+              </div>
+              <h5 class="item_price">
+                <%= @product.product_detail.any? ? number_to_currency(@product.product_detail.first.price) : t("contact_now") %>
+              </h5>
+              <p><%= @product.desc %></p>
+              <div class="available">
+                <ul>
+                  <li><%= t "color" %>
+                    <% if @product_color.any? %>
+                      <%= select_tag :product_color_id,
+                                      options_from_collection_for_select(@product_color,
+                                                                        :id,
+                                                                        :color,
+                                                                        @product.product_detail.first.product_color.id ) %>
+                    <% end %>
+                  </li>
+                  <li class="size-in"><%= t "size" %>
+                    <% if @product_size.any? %>
+                      <%= select_tag :product_size_id,
+                                      options_from_collection_for_select(@product_size,
+                                                                        :id,
+                                                                        :size,
+                                                                        @product.product_detail.first.product_size.id ) %>
+                    <% end %>
+                  </li>
+                  <div class="clearfix"> </div>
+                </ul>
+              </div>
+              <ul class="tag-men">
+                <li><span>TAG</span>
+                <span class="women1">: Women,</span></li>
+                <li><span>SKU</span>
+                <span class="women1">: CK09</span></li>
+              </ul>
+              <a href="#" class="add-cart item_add"><%= t "add_to_cart" %></a>
+            </div>
+          </div>
+          <div class="clearfix"> </div>
+        </div>
+      <div class="tabs">
+        <ul class="menu_drop">
+          <li class="item1"><a href="#"><%= image_tag "arrow.png" %><%= t "desc" %></a>
+            <ul>
+              <li class="subitem1"><a href="#"><%= @product.desc %></a></li>
+            </ul>
+          </li>
+          <li class="item3"><a href="#"><%= image_tag "arrow.png" %><%= t "review" %></a>
+            <ul>
+              <li class="subitem3"><a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes </a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="latestproducts">
+        <div class="product-one">
+          <div class="col-md-4 product-left p-left">
+            <div class="product-main simpleCart_shelfItem">
+              <a href="single.html" class="mask"><img class="img-responsive zoom-img" src="images/p-1.png" alt="" /></a>
+              <div class="product-bottom">
+                <h3>Smart Watches</h3>
+                <p>Explore Now</p>
+                <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
+              </div>
+              <div class="srch">
+                <span>-50%</span>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+      <%= render "shared/choose_options" %>
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+</div>

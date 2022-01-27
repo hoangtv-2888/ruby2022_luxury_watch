@@ -1,7 +1,7 @@
 <div class="top-header">
   <div class="container">
     <div class="top-header-main">
-      <div class="col-md-8 top-header-left">
+      <div class="col-lg-6 top-header-left">
         <div class="box" id="choose-language">
           <span><%= t "languages" %></span>
           <ul class="sub-language">
@@ -27,7 +27,7 @@
           <% end %>
         </div>
       </div>
-      <div class="col-md-4 top-header-left">
+      <div class="top-header-left">
         <div class="cart box_1">
           <%= link_to cart_path do %>
             <div class="total">
@@ -39,7 +39,6 @@
           <div class="clearfix"> </div>
         </div>
       </div>
-      <div class="clearfix"></div>
     </div>
   </div>
 </div>
@@ -66,7 +65,7 @@
     </div>
     <div class="col-md-3 header-right">
       <div class="search-bar">
-        <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+        <input type="text" placeholder="Search">
         <input type="submit" value="">
       </div>
     </div>
