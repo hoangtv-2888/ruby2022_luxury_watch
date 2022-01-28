@@ -24,7 +24,6 @@
         <div class="box">
           <% if logged_in? %>
             <span><%= current_user.name %></span>
-
             <% if current_user.admin? %>
               <span class="admin-page"><%= link_to t("admin.admin"), admin_root_path %></span>
             <% end %>
@@ -35,12 +34,12 @@
         <div class="cart box_1">
           <%= link_to cart_path do %>
             <div class="total">
-              <span class="simpleCart_total"></span>
+              <span class="simpleCart_total">
+                <span class="badge"><%= total_cart %></span>
+                <%= image_tag "cart-1.png" %>
+              </span>
             </div>
-            <%= image_tag "cart-1.png" %>
           <% end %>
-          <p><%= link_to t("empty_cart"), root_path %></p>
-          <div class="clearfix"> </div>
         </div>
       </div>
     </div>

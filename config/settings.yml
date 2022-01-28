@@ -14,3 +14,4 @@ items_per_page: 8
 pag_10: 10
 admin: 1
 user: 0
+quantity_defaut_1: 1
