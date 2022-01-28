@@ -16,7 +16,8 @@ Rails.application.routes.draw do
     resources :homes, only: :index
 
     namespace :admin do
-      root "admin#index"
+      root "users#index"
+      resources :users, only: %i(index update show)
     end
   end
 end

@@ -1,5 +1,5 @@
 class Admin::AdminController < ApplicationController
-  layout "admin"
+  before_action :check_login, :check_amin
 
-  def index; end
+  layout "admin"
 end
