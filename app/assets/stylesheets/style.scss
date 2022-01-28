@@ -4,6 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
+@import 'color';
 body{
   background:#fff;
   font-family: 'Lato-Regular';
@@ -40,7 +41,8 @@ body a{
 .search-bar input[type="text"] {
   width: 100%;
   padding: 8px 45px 8px 8px;
-  border: 1px solid #F5F5F5;
+  border: 1px solid black;
+  border-radius: 5px;
   background: none;
   outline: none;
   -webkit-appearance: none;
@@ -50,17 +52,9 @@ body a{
   position: relative;
 }
 .search-bar input[type="submit"] {
-  background: url(../images/search.png)no-repeat 0px 0px;
-  outline: none;
-  -webkit-appearance: none;
-  border: 0;
   display: inline-block;
-  vertical-align: -webkit-baseline-middle;
   position: absolute;
-  width: 18px;
-  height: 18px;
-  top: 9px;
-  right: 10%;
+  height: 100%;
 }
 .search-bar {
   width: 93%;
@@ -3037,4 +3031,16 @@ h3.ghj {
   .sky-form .radio, .sky-form .checkbox {
     font-size: 12px;
   }
+}
+.drop_searches {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.drop_searches div{
+  margin: 0px 5px;
+}
+.drop_searches input {
+  height: fit-content;
+  margin-top: 0px;
 }

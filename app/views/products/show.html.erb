@@ -41,7 +41,7 @@
                                                                         @product.product_detail.first.product_color.id ) %>
                     <% end %>
                   </li>
-                  <li class="size-in"><%= t "size" %>
+                  <li class="size-in"><%= t "sizes" %>
                     <% if @product_size.any? %>
                       <%= select_tag :product_size_id,
                                       options_from_collection_for_select(@product_size,

@@ -65,8 +65,10 @@
     </div>
     <div class="col-md-3 header-right">
       <div class="search-bar">
-        <input type="text" placeholder="Search">
-        <input type="submit" value="">
+        <%= form_tag homes_path, method: :get do %>
+          <%= text_field_tag :name, params[:name], placeholder: t("search"), class: "d-inline-block" %>
+          <%= submit_tag t("search"), class: "btn btn-primary" %>
+        <% end %>
       </div>
     </div>
     <div class="clearfix"> </div>

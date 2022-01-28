@@ -22,7 +22,7 @@ end
                       desc: "")
 end
 
-30.times do |n|
+100.times do |n|
   ProductDetail.create(quantity: n,
                        price: n*1000000,
                        product_id: Product.pluck(:id).sample,
