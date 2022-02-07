@@ -31,7 +31,7 @@
               </h5>
               <p><%= @product.desc %></p>
               <div class="available">
-                <ul>
+                <ul class="select_option" data-product_id=<%= @product.id %>>
                   <li><%= t "color" %>
                     <% if @product_color.any? %>
                       <%= select_tag :product_color_id,
@@ -49,6 +49,11 @@
                                                                         :size,
                                                                         @product.product_detail.first.product_size.id ) %>
                     <% end %>
+                  <li>
+                    <%= t "quantity" %>
+                    <span class="quantity_product"><%= @product.product_detail.first.quantity %>
+                    </span>
+                  </li>
                   </li>
                   <div class="clearfix"> </div>
                 </ul>
@@ -59,7 +64,12 @@
                 <li><span>SKU</span>
                 <span class="women1">: CK09</span></li>
               </ul>
-              <a href="#" class="add-cart item_add"><%= t "add_to_cart" %></a>
+              <div class="add_to_cart">
+                <%= form_tag add_to_cart_path(@product.product_detail.first.id) do %>
+                  <%= hidden_field_tag :product_detail_id, @product.product_detail.first.id, id: "product_detail_id" %>
+                  <%= submit_tag t("add_to_cart"), class: "btn btn-primary add_cart" %>
+                <% end %>
+              </div>
             </div>
           </div>
           <div class="clearfix"> </div>

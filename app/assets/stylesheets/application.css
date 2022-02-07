@@ -64,3 +64,16 @@ span.admin-page a{
   color: white;
   margin-left: 10px;
 }
+
+.simpleCart_total {
+  position: relative;
+}
+
+.simpleCart_total .badge {
+  position: absolute;
+  background-color: #d9534f !important;
+}
+
+input.add_cart {
+  margin-top: 10px;
+}
