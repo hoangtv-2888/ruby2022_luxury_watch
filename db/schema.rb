@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2022_01_24_163009) do
   end
 
   create_table "comment_rates", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "content"
+    t.text "content"
     t.integer "star"
     t.bigint "user_id", null: false
     t.bigint "product_id", null: false

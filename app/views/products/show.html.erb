@@ -17,12 +17,12 @@
               <h2><%= @product.name %></h2>
               <div class="star-on">
                 <ul class="star-footer">
-                  <% 5.times do %>
+                  <% load_avg_star(@product).times do %>
                     <li><a href="#"><%= image_tag "star.png"%></a></li>
                   <% end %>
                 </ul>
                 <div class="review">
-                  <a href="#"> 1 <%= t "review" %>  </a>
+                  <a href="#"> <%= @product.comment_rates.pluck(:id).count %> <%= t "review" %>  </a>
                 </div>
                 <div class="clearfix"> </div>
               </div>
@@ -75,20 +75,39 @@
           <div class="clearfix"> </div>
         </div>
       <div class="tabs">
-        <ul class="menu_drop">
-          <li class="item1"><a href="#"><%= image_tag "arrow.png" %><%= t "desc" %></a>
-            <ul>
-              <li class="subitem1"><a href="#"><%= @product.desc %></a></li>
-            </ul>
-          </li>
-          <li class="item3"><a href="#"><%= image_tag "arrow.png" %><%= t "review" %></a>
-            <ul>
-              <li class="subitem3"><a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes </a></li>
-            </ul>
-          </li>
-        </ul>
+        <div>
+          <h3><%= t "desc" %></h3>
+          <p><%= @product.desc %><p>
+        </div>
+        <div>
+          <h3><%= t "review" %></h3>
+          <% @comments.each do |comment| %>
+            <div>
+              <strong><%= comment.user.name %> (<%= time_ago_in_words(comment.created_at) %>)<br/></strong>
+              <% comment.star.times do %>
+                <%= image_tag "star.png" %>
+              <% end %>
+            </div>
+            <p><%= comment.content %></p>
+            <% if comment.user == current_user %>
+              <%= link_to t("delete"), comment, method: :delete, data:{confirm: t("are_you_sure")}, class: "text-danger" %>
+            <% end %>
+          <% end %>
+        </div>
       </div>
       <div class="latestproducts">
+        <% if logged_in? %>
+          <%= form_for @comment_rate do |f| %>
+            <%= f.text_area :content, class: "form-control", placeholder: t("your_comment") %>
+            <%= f.hidden_field :product_id, value: @product.id %>
+            <%= label_tag t("star") %>
+            <%= f.number_field :star, value: Settings.default_star,
+                                      class: "form-control",
+                                      min: Settings.min_star, max: Settings.max_star, step: Settings.default_step %>
+            <%= f.submit t("submit"), class: "btn btn-primary mt-5" %>
+          <% end %>
+        <% end %>
+        <%== pagy_bootstrap_nav(@pagy) %>
         <div class="product-one">
           <div class="col-md-4 product-left p-left">
             <div class="product-main simpleCart_shelfItem">

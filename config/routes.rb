@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :password_resets, except: %i(index destroy)
     resources :products
     resources :homes, only: :index
+    resources :comment_rates, only: %i(create destroy)
 
     namespace :admin do
       root "users#index"
