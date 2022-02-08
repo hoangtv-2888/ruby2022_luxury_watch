@@ -14,7 +14,45 @@ $( document ).ready(function() {
     sendSelectOptionCart($("select#product_size_id").val(),
                         $(this).val(),
                         $(".select_option").data("product_id"));
-  })
+  });
+
+  $(document).on("click", ".update-quantity .plus", function(e) {
+    let parent_obj = $(this).parents(".update-quantity");
+    let input = parent_obj.find("input.quantity");
+    let current_quantity = input.val();
+    let product_quantity = input.data("quantity");
+
+    if (product_quantity > current_quantity) {
+      current_quantity ++;
+      input.val(current_quantity);
+      input.change();
+    }
+  });
+
+  $(document).on("click", ".update-quantity .minus", function(e) {
+    let parent_obj = $(this).parents(".update-quantity");
+    let input = parent_obj.find("input.quantity");
+    let current_quantity = input.val();
+
+    if (current_quantity > 1) {
+      current_quantity--;
+      input.val(current_quantity);
+      input.change();
+    }
+  });
+
+  $(document).on("change", ".update-quantity input.quantity", function(e) {
+    let product_detail_id = $(this).data("id");
+    let quantity = $(this).val();
+
+    $.ajax({
+      method: "POST",
+      url: "/update_cart",
+      data: {product_detail_id: product_detail_id, quantity: quantity},
+      dataType: 'script'
+    });
+
+  });
 });
 
 function sendSelectOptionCart(product_size_id, product_color_id, product_id) {

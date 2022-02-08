@@ -249,16 +249,10 @@ li.clone {
   li.clone {
     width: 222px!important;
   }
-  .thumb-image {
-    width:226px !important;
-  }
 }
 @media(max-width:480px){
   li.clone {
     width: 227px !important;
-  }
-  .thumb-image {
-    width:212px !important;
   }
 }
 @media(max-width:320px) {
