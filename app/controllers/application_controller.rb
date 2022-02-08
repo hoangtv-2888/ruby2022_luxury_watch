@@ -19,9 +19,11 @@ class ApplicationController < ActionController::Base
     {locale: I18n.locale}
   end
 
-  def check_amin
-    redirect_to root_path unless current_user.admin?
+  def check_admin
+    return if current_user.admin?
+
     flash[:danger] = t "admin.not_admin"
+    redirect_to root_path
   end
 
   def find_user_by_id

@@ -93,3 +93,29 @@ en:
   error: "Error"
   delete: "Delete"
   are_you_sure: "Are you sure ?"
+  all_categories: "All categories"
+  edit: "Edit"
+  delete: "Delete"
+  activerecord:
+    models:
+      category: "Category"
+    attributes:
+      category:
+        name: "Name"
+        desc: "Description"
+  admin:
+    categories:
+      index:
+        title: "Category"
+        create: "Create"
+      show:
+        title: "Category"
+        name: "Category name"
+        desc: "Description"
+      form:
+        name: "Category name"
+        desc: "Description"
+      new:
+        title: "Create new category"
+      edit:
+        title: "Edit category"

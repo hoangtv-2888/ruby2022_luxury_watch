@@ -1,5 +1,5 @@
 class Admin::AdminController < ApplicationController
-  before_action :check_login, :check_amin
+  before_action :check_login, :check_admin
 
   layout "admin"
 end

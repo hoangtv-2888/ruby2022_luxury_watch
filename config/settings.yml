@@ -21,3 +21,4 @@ max_comment_length: 500
 min_star: 0
 max_star: 5
 default_step: 1
+max_name_length: 50
