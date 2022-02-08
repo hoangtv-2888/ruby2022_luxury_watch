@@ -93,3 +93,29 @@ vi:
   error: "Có lỗi xảy ra"
   delete: "Xóa"
   are_you_sure: "Bạn có chắc ?"
+  all_categories: "Tất cả danh mục"
+  edit: "Sửa"
+  delete: "Xóa"
+  activerecord:
+    models:
+      category: "Danh mục"
+    attributes:
+      category:
+        name: "Tên"
+        desc: "Mô tả"
+  admin:
+    categories:
+      index:
+        title: "Danh mục"
+        create: "Thêm mới"
+      show:
+        title: "Danh mục"
+        name: "Tên danh mục"
+        desc: "Mô tả"
+      form:
+        name: "Tên danh mục"
+        desc: "Mô tả"
+      new:
+        title: "Thêm mới danh mục"
+      edit:
+        title: "Chỉnh sửa danh mục"
