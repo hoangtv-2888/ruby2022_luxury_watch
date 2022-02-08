@@ -15,3 +15,9 @@ pag_10: 10
 admin: 1
 user: 0
 quantity_defaut_1: 1
+comments_per_page: 4
+default_star: 0
+max_comment_length: 500
+min_star: 0
+max_star: 5
+default_step: 1

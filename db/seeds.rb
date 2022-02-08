@@ -36,7 +36,7 @@ User.create!(name: "Example User",
             email: "admin@gmail.com",
             password: "123456",
             password_confirmation: "123456",
-            role: true,
+            role: 1,
             activated: true,
             activated_at: Time.zone.now)
 
@@ -52,7 +52,14 @@ User.create!(name: "Example User",
               email: email,
               password: password,
               password_confirmation: password,
-              role: false,
+              role: 0,
               activated: true,
               activated_at: Time.zone.now)
+end
+
+50.times do
+  CommentRate.create(content: Faker::Lorem.sentence(word_count: 100),
+                     star: rand(3..5),
+                     user_id: User.pluck(:id).sample,
+                     product_id: Product.pluck(:id).sample)
 end
