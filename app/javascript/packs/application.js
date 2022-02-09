@@ -14,7 +14,8 @@ require("./imagezoom.js")
 require("./memenu.js")
 require("./jquery.easydropdown.js")
 require("./custom.js")
-
+require("jquery")
+require("@nathanvda/cocoon")
 import "bootstrap/dist/css/bootstrap"
 import "bootstrap/dist/js/bootstrap"
 

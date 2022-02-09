@@ -3,7 +3,25 @@ class Product < ApplicationRecord
   belongs_to :category
   has_many :comment_rates, dependent: :destroy
   has_many :products, through: :comment_rates
+  has_many_attached :images
+  accepts_nested_attributes_for :product_detail,
+                                reject_if: :all_blank,
+                                allow_destroy: true
 
+  validates :name, presence: true, uniqueness: true
+  validates :desc, presence: true,
+            length: {maximum: Settings.max_comment_length}
+  validates :images,
+            content_type:
+            {
+              in: Settings.image_format,
+              message: I18n.t("invalid_format")
+            },
+            size:
+            {
+              less_than: Settings.image_size.megabytes,
+              message: I18n.t("invalid_size")
+            }
   scope :newest, ->{order created_at: :desc}
   scope :search_by_name,
         ->(name){where("LOWER(name) LIKE ?", "%#{name.downcase}%") if name}
@@ -17,4 +35,8 @@ class Product < ApplicationRecord
     joins(:product_detail)
     .where(product_detail: {product_color_id: product_color_id})
   end)
+
+  def display_image image
+    image.variant(resize: Settings.resize_images).processed
+  end
 end

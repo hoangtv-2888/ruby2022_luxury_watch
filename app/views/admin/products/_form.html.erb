@@ -1,0 +1,33 @@
+<div class="col-lg-7">
+  <div class="p-5">
+    <%= form_for [:admin, @product] do |f| %>
+      <%= render "shared/error_messages", object: f.object %>
+      <div class="form-group">
+        <%= f.label :images, t("images") %>
+        <%= f.file_field :images, multiple: true , class: "mt-5" %>
+        <%= f.file_field :images, multiple: true , class: "mt-5" %>
+        <%= f.file_field :images, multiple: true , class: "mt-5" %>
+        <%= f.label :category_id, t("category"), {class: "required mt-5"} %>
+        <br/>
+        <%= f.collection_select :category_id, Category.select(:id, :name).order(:name),
+                                              :id, :name, {}, {class: "form-control"} %>
+        <br/>
+        <%= f.label :name, t("name"), {class: "required"} %>
+        <%= f.text_field :name, {class: "form-control"} %>
+        <%= f.label :desc, t("desc"), {class: "required"} %>
+        <%= f.text_field :desc, {class: "form-control"} %>
+        <%= f.label :material, t("material"), {class: "required"} %>
+        <%= f.text_field :material, {class: "form-control"} %>
+      </div>
+      <div class="form-group">
+        <%= f.fields_for :product_detail do |t| %>
+          <%= render "product_detail_fields", f: t %>
+        <% end %>
+      </div>
+      <div class="links">
+        <%= link_to_add_association t("add"), f, :product_detail, class: "btn btn-primary mt-5" %>
+      </div>
+      <%= f.submit yield(:button_text), class: "btn btn-primary mt-5" %>
+    <% end %>
+  </div>
+</div>

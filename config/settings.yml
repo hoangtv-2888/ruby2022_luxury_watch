@@ -22,3 +22,7 @@ min_star: 0
 max_star: 5
 default_step: 1
 max_name_length: 50
+min_val: 0
+image_format: ["image/png", "image/jpg", "image/jpeg"]
+image_size: 5
+resize_images: "125x200!"
