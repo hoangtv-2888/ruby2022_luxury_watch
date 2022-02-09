@@ -159,3 +159,4 @@ vi:
   price_each: "Đơn giá"
   total_money: "Tổng tiền"
   purchase: "Mua hàng"
+  not_unique: "Trùng lặp bản ghi"

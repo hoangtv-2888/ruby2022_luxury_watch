@@ -163,3 +163,4 @@ en:
   price_each: "Price each"
   total_money: "Total money"
   purchase: "Purchase"
+  not_unique: "Can't be insert duplicate"

@@ -9,6 +9,9 @@ class CreateProductDetails < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
-    add_index :product_details, [:product_id, :product_size_id, :product_color_id], unique: true
+    add_index :product_details,
+      [:product_id, :product_size_id, :product_color_id],
+       unique: true,
+       name: "prd_detail_index"
   end
 end

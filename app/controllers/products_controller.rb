@@ -14,11 +14,13 @@ class ProductsController < ApplicationController
       flash[:danger] = t "not_found"
       return redirect_to root_path
     end
-    @product_color = []
-    @product_size = []
+    @product_color = Array.new
+    @product_size = Array.new
     @product.product_detail.each do |product_detail|
       @product_color << product_detail.product_color
       @product_size << product_detail.product_size
     end
+    @product_color = @product_color.uniq
+    @product_size = @product_size.uniq
   end
 end
