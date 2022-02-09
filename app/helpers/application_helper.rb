@@ -15,4 +15,8 @@ module ApplicationHelper
 
     product.comment_rates.average(:star).round
   end
+
+  def load_options model, value
+    model.select(:id, value.to_sym).order(value.to_sym)
+  end
 end

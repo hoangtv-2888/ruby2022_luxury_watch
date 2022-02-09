@@ -96,13 +96,30 @@ vi:
   all_categories: "Tất cả danh mục"
   edit: "Sửa"
   delete: "Xóa"
+  add: "Thêm"
+  create: "Tạo mới"
+  name: "Tên"
+  price: "Giá"
+  material: "Chất liệu"
+  images: "Ảnh"
+  invalid_format: "Kiểu dữ liệu không hợp lệ"
+  invalid_size: "Dung lượng quá lớn"
+  all_product: "Tất cả sản phẩm"
   activerecord:
     models:
       category: "Danh mục"
+      product: "Sản phẩm"
     attributes:
       category:
         name: "Tên"
         desc: "Mô tả"
+      product:
+        name: "Tên"
+        desc: "Mô tả"
+      product_detail:
+        price: "Giá"
+        quantity: "Số lượng"
+        images: "Hình ảnh"
   admin:
     categories:
       index:
@@ -119,6 +136,21 @@ vi:
         title: "Thêm mới danh mục"
       edit:
         title: "Chỉnh sửa danh mục"
+    products:
+      index:
+        title: "Sản phẩm"
+        create: "Thêm mới"
+      show:
+        title: "Sản phẩm"
+        name: "Tên sản phẩm"
+        desc: "Mô tả"
+      form:
+        name: "Tên sản phẩm"
+        desc: "Mô tả"
+      new:
+        title: "Thêm mới sản phẩm"
+      edit:
+        title: "Chỉnh sửa sản phẩm"
   delete_product: "Bạn có muốn xóa sản phẩm này không?"
   delete: "Xoa"
   total_product: "Tổng sản phẩm"
