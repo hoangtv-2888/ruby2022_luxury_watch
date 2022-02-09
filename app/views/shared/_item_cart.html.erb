@@ -1,0 +1,26 @@
+<tr id="quantity_<%= product_detail.id %>">
+  <td class="item">
+    <div class="d-flex align-items-start">
+      <div class="thumb-image"><%= image_tag "p-1.png", class: "img-responsive" %></div>
+      <div><%= product_detail.product_name %></div>
+    </div>
+  </td>
+  <td>
+  <div class="update-quantity">
+    <button class="minus _2rGMck">-</button>
+    <input class="_2rGMck quantity"
+      data-id="<%= product_detail.id %>"
+      data-quantity="<%= product_detail.quantity %>"
+      value="<%= quantity %>" />
+    <button class="plus _2rGMck">+</button>
+  </div>
+  </td>
+  <td class="d-flex flex-column"><%= number_to_currency(product_detail.price) %></td>
+  <td class="font-weight-bold item_total_money"
+      data-money="<%= price_item_cart quantity, product_detail.price %>">
+    <%= number_to_currency(price_item_cart quantity, product_detail.price) %>
+  </td>
+  <td>
+    <%= link_to t("delete"), remove_from_cart_path(product_detail.id), method: :delete, class: "btn btn-danger" %>
+  </td>
+</tr>

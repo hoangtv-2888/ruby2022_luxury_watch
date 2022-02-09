@@ -16,6 +16,7 @@ require("./jquery.easydropdown.js")
 require("./custom.js")
 
 import "bootstrap/dist/css/bootstrap"
+import "bootstrap/dist/js/bootstrap"
 
 Rails.start()
 Turbolinks.start()

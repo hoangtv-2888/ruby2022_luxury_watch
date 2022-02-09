@@ -119,3 +119,11 @@ vi:
         title: "Thêm mới danh mục"
       edit:
         title: "Chỉnh sửa danh mục"
+  delete_product: "Bạn có muốn xóa sản phẩm này không?"
+  delete: "Xoa"
+  total_product: "Tổng sản phẩm"
+  cart: "Giỏ hàng"
+  name_product: "Tên sản phẩm"
+  price_each: "Đơn giá"
+  total_money: "Tổng tiền"
+  purchase: "Mua hàng"

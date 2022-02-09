@@ -1,0 +1,27 @@
+<div class="cart-page container">
+  <div class="table-responsive">
+    <h3 class="text-center title-cart"><%= t "cart" %></h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" class="text-uppercase header"><%= t "name_product" %></th>
+          <th scope="col" class="text-uppercase"><%= t "quatity" %></th>
+          <th scope="col" class="text-uppercase"><%= t "price_each" %></th>
+          <th scope="col" class="text-uppercase"><%= t "total" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product_detail, quantity|%>
+          <%= render partial: "shared/item_cart", locals: {product_detail: product_detail, quantity: quantity} %>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="total-cart">
+      <span class="item"><%= t "total_product" %></span>
+      <span class="item total_product">(<%= total_quantity_cart %>)</span>
+      <span class="item"><%= t "total_money" %></span>
+      <span class="item total_money_cart"><%= total_money_cart %></span>
+      <button class="btn btn-danger item"><%= t "purchase" %></button>
+    </div>
+  </div>
+</div>

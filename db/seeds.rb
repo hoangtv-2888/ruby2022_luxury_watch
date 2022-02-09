@@ -63,3 +63,10 @@ end
                      user_id: User.pluck(:id).sample,
                      product_id: Product.pluck(:id).sample)
 end
+
+Discount.create!(
+  start: Time.zone.now,
+  end: Time.now + 10.days,
+  percent: 5,
+  code: "aaaaa"
+)

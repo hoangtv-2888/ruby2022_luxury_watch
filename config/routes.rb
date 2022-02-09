@@ -10,7 +10,8 @@ Rails.application.routes.draw do
     get "/cart", to: "carts#index"
     post "/add_to_cart/:id", to: "carts#create", as: "add_to_cart"
     post "/select_option_cart", to: "carts#select_cart"
-    get "/remove_from_cart/:id", to: "carts#destroy"
+    post "/update_cart", to: "carts#update"
+    delete "/remove_from_cart/:id", to: "carts#destroy", as: "remove_from_cart"
 
     resources :users
     resources :account_activations, only: :edit
