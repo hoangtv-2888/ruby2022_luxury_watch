@@ -1,0 +1,3 @@
+$('.total_payment').html('<%= number_to_currency(total_money_order @total, @discount.percent) %>')
+$('#discount_id').val('<%= @discount.id %>')
+$('.discount_order').text('<%= @discount.percent %> %')

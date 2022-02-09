@@ -1,0 +1,17 @@
+<tr id="quantity_<%= product_detail.id %>">
+  <td class="item">
+    <div class="d-flex align-items-start">
+      <div class="thumb-image"><%= image_tag "p-1.png", class: "img-responsive" %></div>
+      <div><%= product_detail.product.name %></div>
+    </div>
+  </td>
+  <td>
+    <span><%= t "color" %> <%= product_detail.product_color.color %></span>
+    <span><%= t "size" %> <%= product_detail.product_size.size %></span>
+  </td>
+  <td><%= quantity %></td>
+  <td class="d-flex flex-column"><%= number_to_currency(product_detail.price) %></td>
+  <td class="font-weight-bold item_total_money" data-money="<%= price_item_cart quantity, product_detail.price %>">
+    <%= number_to_currency(price_item_cart quantity, product_detail.price) %>
+  </td>
+</tr>

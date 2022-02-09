@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     post "/select_option_cart", to: "carts#select_cart"
     post "/update_cart", to: "carts#update"
     delete "/remove_from_cart/:id", to: "carts#destroy", as: "remove_from_cart"
+    get "/check_code", to: "discounts#show", as: "check_code"
 
     resources :users
     resources :account_activations, only: :edit
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
     resources :products
     resources :homes, only: :index
     resources :comment_rates, only: %i(create destroy)
+    resources :orders, only: %i(create new)
 
     namespace :admin do
       root "users#index"
