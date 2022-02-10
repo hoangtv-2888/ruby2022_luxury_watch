@@ -58,7 +58,7 @@ User.create!(name: "Example User",
 end
 
 50.times do
-  CommentRate.create(content: Faker::Lorem.sentence(word_count: 100),
+  CommentRate.create(content: Faker::Lorem.sentence(word_count: 20),
                      star: rand(3..5),
                      user_id: User.pluck(:id).sample,
                      product_id: Product.pluck(:id).sample)
@@ -70,3 +70,8 @@ Discount.create!(
   percent: 5,
   code: "aaaaa"
 )
+20.times do
+  Order.create(status: rand(0..4),
+               user_id: User.pluck(:id).sample,
+               discount_id: Discount.pluck(:id).sample)
+end

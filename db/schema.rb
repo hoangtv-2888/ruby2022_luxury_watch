@@ -62,11 +62,9 @@ ActiveRecord::Schema.define(version: 2022_02_09_022747) do
     t.datetime "start"
     t.datetime "end"
     t.integer "percent"
-    t.bigint "order_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "code"
-    t.index ["order_id"], name: "index_discounts_on_order_id"
   end
 
   create_table "order_details", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -85,8 +83,10 @@ ActiveRecord::Schema.define(version: 2022_02_09_022747) do
     t.string "user_name_at_order"
     t.string "address_at_order"
     t.bigint "user_id", null: false
+    t.bigint "discount_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["discount_id"], name: "index_orders_on_discount_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_022747) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_color_id"], name: "index_product_details_on_product_color_id"
+    t.index ["product_id", "product_size_id", "product_color_id"], name: "prd_detail_index", unique: true
     t.index ["product_id"], name: "index_product_details_on_product_id"
     t.index ["product_size_id"], name: "index_product_details_on_product_size_id"
   end
@@ -149,9 +150,9 @@ ActiveRecord::Schema.define(version: 2022_02_09_022747) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comment_rates", "products"
   add_foreign_key "comment_rates", "users"
-  add_foreign_key "discounts", "orders"
   add_foreign_key "order_details", "orders"
   add_foreign_key "order_details", "product_details"
+  add_foreign_key "orders", "discounts"
   add_foreign_key "orders", "users"
   add_foreign_key "product_details", "product_colors"
   add_foreign_key "product_details", "product_sizes"

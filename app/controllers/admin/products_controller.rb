@@ -11,16 +11,12 @@ class Admin::ProductsController < Admin::AdminController
   end
 
   def create
-    @product = Product.new product_params
-    if params.dig(:product, :images)
-      @product.images.attach params[:product][:images]
-    end
-    if @product.save
-      flash[:success] = t "success"
-      redirect_to admin_product_path @product
-    else
-      flash.now[:danger] = t "error"
-      render :new
+    ActiveRecord::Base.transaction do
+      @product = Product.new product_params
+      if params.dig(:product, :images)
+        @product.images.attach params[:product][:images]
+      end
+      handle_create_transaction @product
     end
   end
 
@@ -61,5 +57,18 @@ class Admin::ProductsController < Admin::AdminController
                                               :price,
                                               :product_size_id,
                                               :product_color_id])
+  end
+
+  def handle_create_transaction product
+    if product.save
+      flash[:success] = t "success"
+      redirect_to admin_product_path product
+    else
+      flash.now[:danger] = t "error"
+      render :new
+    end
+  rescue StandardError => e
+    flash.now[:danger] = e
+    render :new
   end
 end
