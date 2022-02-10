@@ -63,12 +63,25 @@ end
                      user_id: User.pluck(:id).sample,
                      product_id: Product.pluck(:id).sample)
 end
+50.times do
+  CommentRate.create(content: Faker::Lorem.sentence(word_count: 100),
+                     star: rand(3..5),
+                     user_id: User.pluck(:id).sample,
+                     product_id: Product.pluck(:id).sample)
+end
 
 Discount.create!(
   start: Time.zone.now,
   end: Time.now + 10.days,
   percent: 5,
   code: "aaaaa"
+)
+
+Discount.create!(
+  start: Time.zone.now,
+  end: Time.now + 10.days,
+  percent: 0,
+  code: "00000"
 )
 20.times do
   Order.create(status: rand(0..4),

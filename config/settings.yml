@@ -26,3 +26,7 @@ min_val: 0
 image_format: ["image/png", "image/jpg", "image/jpeg"]
 image_size: 5
 resize_images: "125x200!"
+status_order_new: 0
+discount_default: "0%"
+number_100: 100
+code_default: 2

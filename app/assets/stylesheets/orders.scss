@@ -1,0 +1,55 @@
+@import './color.scss';
+
+.list-orders {
+  background-color: $f5f5;
+
+  .box-order {
+    background-color: $white;
+    padding: 15px;
+    border-radius: 2px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+
+  .list-product {
+    margin-bottom: 30px;
+  }
+
+  .discount {
+    form {
+      display: flex;
+      justify-content: right;
+      .input-discount {
+        width: 200px !important;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .total-order {
+    margin-top: 30px;
+    display: flex;
+    justify-content: right;
+    .item {
+      width: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+    }
+
+    .button-order {
+      width: 100px !important;
+      float: right;
+      text-align: center;
+    }
+  }
+
+  .address {
+    .info {
+      span {
+        padding: 0 10px;
+      }
+    }
+  }
+}

@@ -15,6 +15,15 @@ module CartsHelper
     quantity * price
   end
 
+  def show_cart
+    @products = {}
+
+    current_carts.each do |product_detail_id, quantity|
+      product_detail = ProductDetail.find_by(id: product_detail_id)
+      @products[product_detail] = quantity
+    end
+  end
+
   def total_money_cart
     total = 0
     current_carts.each do |id, quantity|
@@ -22,7 +31,7 @@ module CartsHelper
       total_item = product.price * quantity
       total += total_item
     end
-    number_to_currency(total)
+    total
   end
 
   def delete_item_cart product_detail_id
@@ -38,5 +47,9 @@ module CartsHelper
       delete_item_cart id
     end
     product
+  end
+
+  def total_money_order money, discount
+    money - money * discount / Settings.number_100
   end
 end

@@ -1659,10 +1659,7 @@ a.add-cart:hover {
   -moz-transition: 0.5s all;
   -ms-transition: 0.5s all;
 }
-/*--starts-slide--*/
-.thumb-image { width: 305px; }
 
-.thumb-image > img { width: 100%; }
 /*--end-slide--*/
 .menu_drop {
   width: auto;
@@ -1979,9 +1976,6 @@ h3.ghj {
   .flex-control-thumbs li {
     width: 32.34% !important;
   }
-  .thumb-image {
-    width: 242px;
-  }
   .map iframe {
     height: 300px;
   }
@@ -2208,9 +2202,6 @@ h3.ghj {
   .single-right {
     margin-top: 4%;
   }
-  .thumb-image {
-    width: 305px;
-  }
   .account-left {
     width: 50%;
     float: left;
@@ -2436,9 +2427,6 @@ h3.ghj {
   }
   h3.ghj {
     font-size: 1.55em;
-  }
-  .thumb-image {
-    width: 220px;
   }
 }
 @media (max-width:480px){

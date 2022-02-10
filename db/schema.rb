@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_09_022747) do
+ActiveRecord::Schema.define(version: 2022_02_10_092748) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_022747) do
   end
 
   create_table "comment_rates", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.text "content"
+    t.string "content"
     t.integer "star"
     t.bigint "user_id", null: false
     t.bigint "product_id", null: false
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_022747) do
     t.string "user_name_at_order"
     t.string "address_at_order"
     t.bigint "user_id", null: false
-    t.bigint "discount_id", null: false
+    t.bigint "discount_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["discount_id"], name: "index_orders_on_discount_id"
@@ -106,7 +106,6 @@ ActiveRecord::Schema.define(version: 2022_02_09_022747) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_color_id"], name: "index_product_details_on_product_color_id"
-    t.index ["product_id", "product_size_id", "product_color_id"], name: "prd_detail_index", unique: true
     t.index ["product_id"], name: "index_product_details_on_product_id"
     t.index ["product_size_id"], name: "index_product_details_on_product_size_id"
   end

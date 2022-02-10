@@ -1,0 +1,61 @@
+<div class="list-orders conatainer-fluid">
+  <div class="container">
+    <div class ="address box-order">
+      <h4><%= t "invoice_address" %></h4>
+      <div class="info">
+        <span><%= current_user.name %></span>
+        <span><%= current_user.phone %></span>
+        <span><%= current_user.address %></span>
+        <span><%= t "default" %></span>
+        <button class="btn btn-primary"><%= t "change" %></button>
+      </div>
+    </div>
+    <div class="list-product box-order">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="text-uppercase header"><%= t "name_product" %></th>
+            <th scope="col" class="text-uppercase"><%= t "quatity" %></th>
+            <th scope="col" class="text-uppercase"><%= t "quatity" %></th>
+            <th scope="col" class="text-uppercase"><%= t "price_each" %></th>
+            <th scope="col" class="text-uppercase"><%= t "total" %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @products.each do |product_detail, quantity|%>
+            <%= render partial: "shared/item_order", locals: {product_detail: product_detail, quantity: quantity} %>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="discount">
+        <%= form_for(:discounts, url: check_code_path, remote: true, method: "get") do %>
+          <%= text_field_tag :code, nil, class: "form-control input-discount" %>
+          <%= hidden_field_tag :total, total_money_cart %>
+          <%= submit_tag t("send"), class: "btn btn-primary" %>
+        <% end %>
+      </div>
+   </div>
+   <div class="total-order box-order">
+      <div>
+        <div class="item">
+        <span><%= t "total_money" %></span>
+        <span><%= number_to_currency(total_money_cart) %></span>
+      </div>
+      <div class="item">
+        <span><%= t "discount" %></span>
+        <span class="discount_order"><%= Settings.discount_default %></span>
+      </div>
+      <div class="item">
+        <span><%= t "total_payment" %></span>
+        <span class="total_payment">
+          <%= number_to_currency(total_money_cart) %>
+        </span>
+      </div>
+      <%= form_for(Order.new, url: orders_path) do |f| %>
+        <%= hidden_field_tag :user_name_at_order, current_user.name %>
+        <%= hidden_field_tag :address_at_order, current_user.address %>
+        <%= f.submit t("order"), class: "btn btn-primary button-order" %>
+      <% end %>
+    </div>
+  </div>
+</div>
