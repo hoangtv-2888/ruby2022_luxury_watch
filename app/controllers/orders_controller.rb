@@ -1,7 +1,12 @@
 class OrdersController < ApplicationController
-  before_action :check_login, :show_cart
+  before_action :check_login
   before_action :init_order, only: %i(create)
   before_action :show_cart, only: %i(new)
+  before_action :show_history_orders, only: %i(index)
+  before_action :load_order, only: %i(show update)
+  before_action :update_status, only: %i(update)
+
+  def index; end
 
   def new; end
 
@@ -13,6 +18,15 @@ class OrdersController < ApplicationController
     handle_success_order
   rescue NoMethodError
     handle_exception e
+  end
+
+  def show; end
+
+  def update
+    respond_to do |format|
+      format.html{redirect_to request.referer}
+      format.js
+    end
   end
 
   private
@@ -34,9 +48,8 @@ class OrdersController < ApplicationController
   end
 
   def init_order
-    @order = Order.new order_params
-    @order.status = Settings.status_order_new
-    @order.user_id = current_user.id
+    @order = current_user.orders.new order_params
+    @order.status = Settings.order_wait
   end
 
   def handle_success_order
@@ -49,5 +62,31 @@ class OrdersController < ApplicationController
     log exception
     flash.now[:danger] = t "error"
     redirect_to root_url
+  end
+
+  def show_history_orders
+    @pagy, @orders = pagy current_user.orders.includes(:order_details)
+                                      .by_status(params[:type])
+                                      .newest
+  end
+
+  def load_order
+    @order = current_user.orders.find_by id: params[:id]
+    return if @order
+
+    flash[:danger] = t "not_found"
+    redirect_to root_path
+  end
+
+  def update_status
+    begin
+      if @order.status_buy_again?
+        return if @order.wait!
+      elsif @order.wait?
+        return if @order.rejected!
+      end
+    end
+  rescue StandardError => e
+    handle_exception e
   end
 end

@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading"><%= t "detail_order" %></div>
+    <div class="panel-body">
+      <strong class="pr-90"><%= t "name" %>:</strong><p><%= @order.user_name_at_order %></p>
+      <strong class="pr-90"><%= t "address" %>:</strong><p><%= @order.address_at_order %></p>
+      <strong class="pr-90"><%= t "phone" %>:</strong><p><%= @order.user.phone %></p>
+      <strong class="pr-90"><%= t "order_date" %>:</strong><p><%= l(@order.created_at, format: :short)  %></p>
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th scope="col"><%= t "product" %></th>
+            <th scope="col"><%= t "size" %></th>
+            <th scope="col"><%= t "color" %></th>
+            <th scope="col"><%= t "price" %></th>
+            <th scope="col"><%= t "quantity" %></th>
+            <th scope="col"><%= t "total_money" %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order.order_details.each do |odt| %>
+            <tr>
+              <td><%= odt.product_detail.product_name  %>
+              <td><%= odt.product_detail.size  %>
+              <td><%= odt.product_detail.color  %>
+              <td><%= number_to_currency odt.price_at_order %></td>
+              <td><%= odt.quantity %></td>
+              <td><%= number_to_currency multiple_price(odt.quantity, odt.price_at_order) %>
+            </tr>
+          <% end %>
+          <tr>
+            <td colspan="3"></td>
+            <td><%= t "discount" %></td>
+            <td><%= get_discount_percent @order.discount %>%</td>
+            <td>-<%= number_to_currency cal_discount(@order.discount, total_price(@order))%></td>
+          </tr>
+          <tr>
+            <td colspan="4"></td>
+            <b>
+              <td><%= t "total_payment" %></td>
+              <td><%= number_to_currency cal_purchase_price(@order.discount, total_price(@order)) %></td>
+            </b>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

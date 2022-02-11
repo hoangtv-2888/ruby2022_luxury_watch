@@ -1,0 +1,33 @@
+<div class="history_order container-fluid">
+  <div class="container">
+    <nav class="navbar navbar-default">
+      <ul class="nav navbar-nav">
+        <% Order.statuses.each do |key, val| %>
+          <li class=<%= active_class_order val %>>
+            <%= link_to t("#{key}"), history_orders_path(val) %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+    <div class="list-product box-order panel panel-primary">
+      <div class="panel-heading"><%= t("my_order") %></div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" class="text-uppercase header"><%= t "name_product" %></th>
+              <th scope="col" class="text-uppercase"><%= t "quantity" %></th>
+              <th scope="col" class="text-uppercase"><%= t "total" %></th>
+              <th scope="col" class="text-uppercase"><%= t "order_date" %></th>
+              <th scope="col" class="text-uppercase"><%= t "action" %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render partial: "item_history_order", collection: @orders, as: :order %>
+          </tbody>
+        </table>
+      </div>
+   </div>
+   <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
+</div>

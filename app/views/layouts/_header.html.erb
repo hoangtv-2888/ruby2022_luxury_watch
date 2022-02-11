@@ -15,6 +15,7 @@
             <% if logged_in? %>
               <li><%= link_to t("logout"), logout_path, method: :delete %></li>
               <li><%= link_to t("settings"), edit_user_path(current_user) %></li>
+              <li><%= link_to t("my_order"), history_orders_path(Settings.order_wait) %></li>
             <% else %>
               <li><%= link_to t("login"), login_path %></li>
               <li><%= link_to t("singup"), signup_path %></li>

@@ -52,4 +52,8 @@ module CartsHelper
   def total_money_order money, discount
     money - money * discount / Settings.number_100
   end
+
+  def active_class_order type
+    type == params[:type].to_i ? "active" : ""
+  end
 end
