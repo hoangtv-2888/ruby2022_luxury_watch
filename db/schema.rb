@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2022_02_10_092748) do
   end
 
   create_table "comment_rates", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "content"
+    t.text "content"
     t.integer "star"
     t.bigint "user_id", null: false
     t.bigint "product_id", null: false
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 2022_02_10_092748) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_color_id"], name: "index_product_details_on_product_color_id"
+    t.index ["product_id", "product_size_id", "product_color_id"], name: "prd_detail_index", unique: true
     t.index ["product_id"], name: "index_product_details_on_product_id"
     t.index ["product_size_id"], name: "index_product_details_on_product_size_id"
   end

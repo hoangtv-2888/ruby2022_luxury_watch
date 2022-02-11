@@ -30,3 +30,5 @@ status_order_new: 0
 discount_default: "0%"
 number_100: 100
 code_default: 2
+max_percent: 100
+default_discount_percent: 0
