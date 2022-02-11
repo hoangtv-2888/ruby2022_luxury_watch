@@ -1,0 +1,21 @@
+<tr>
+  <td><%= link_to order.id, admin_order_path(order) %></td>
+  <td><%= link_to order.user.name, admin_order_path(order) %></td>
+  <td>
+    |<% order.order_details.each do |odt| %>
+      <%= odt.product_detail.product.name %>|
+    <% end %>
+  </td>
+  <td><%= order.created_at.strftime("%H:%M %d-%m-%Y") %></td>
+  <td><span class="btn btn-<%= order.status %>"><%= t "order_status.#{order.status}" %><span></td>
+  <% case order.status.to_sym %>
+  <% when :wait %>
+    <td><%= render partial: "status_form", locals: {order: order, status: :confirmed} %></td>
+    <td><%= render partial: "status_form", locals: {order: order, status: :rejected} %></td>
+  <% when :confirmed %>
+    <td><%= render partial: "status_form", locals: {order: order, status: :shipping} %></td>
+    <td><%= render partial: "status_form", locals: {order: order, status: :rejected} %></td>
+  <% when :shipping %>
+    <td><%= render partial: "status_form", locals: {order: order, status: :delivered} %></td>
+  <% end %>
+</tr>

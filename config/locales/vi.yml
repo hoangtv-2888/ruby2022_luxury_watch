@@ -151,6 +151,17 @@ vi:
         title: "Thêm mới sản phẩm"
       edit:
         title: "Chỉnh sửa sản phẩm"
+    orders:
+      index:
+        title: "Tất cả đơn hàng"
+      show:
+        title: "Chi tiết đơn hàng"
+      status_form:
+        confirmed: "Xác nhận"
+        shipping: "Đang giao"
+        delivered: "Đã giao"
+        rejected: "Hủy"
+        returned: "Đã hoàn hàng"
   delete_product: "Bạn có muốn xóa sản phẩm này không?"
   delete: "Xoa"
   total_product: "Tổng sản phẩm"
@@ -167,6 +178,18 @@ vi:
   total_payment: "Tổng tiền thanh toán"
   discount: "Chiết khấu"
   order: "Đặt hàng"
-  color: "Màu sắc"
-  size: "Kích cỡ"
+  color: "Màu"
+  size: "Size"
   not_found_discount: "Mã giảm giá không đúng"
+  order_id: "Mã đơn hàng"
+  status: "Trạng thái"
+  order_status:
+    wait: "Chờ xác nhận"
+    confirmed: "Đã xác nhận"
+    shipping: "Đang giao"
+    delivered: "Đã giao"
+    rejected: "Đã hủy"
+    returned: "Đã hoàn hàng"
+  order_date: "Ngày đặt"
+  action: "Hành động"
+  all_order: "Tất cả đơn hàng"

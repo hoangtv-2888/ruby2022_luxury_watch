@@ -24,7 +24,7 @@ end
 
 100.times do |n|
   ProductDetail.create(quantity: n,
-                       price: n*1000000,
+                       price: 1000000 + n*50000,
                        product_id: Product.pluck(:id).sample,
                        product_size_id: ProductSize.pluck(:id).sample,
                        product_color_id: ProductColor.pluck(:id).sample)
@@ -84,7 +84,15 @@ Discount.create!(
   code: "00000"
 )
 20.times do
-  Order.create(status: rand(0..4),
-               user_id: User.pluck(:id).sample,
-               discount_id: Discount.pluck(:id).sample)
+  order = Order.create(status: rand(0..4),
+                       user_id: User.pluck(:id).sample,
+                       discount_id: Discount.pluck(:id).sample)
+  3.times do |n|
+    prdt = ProductDetail.select(:id, :price).sample
+    odt = order.order_details.create(quantity: n+1,
+                                    price_at_order: prdt.price,
+                                    order_id: order.id,
+                                    product_detail_id: prdt.id)
+
+  end
 end

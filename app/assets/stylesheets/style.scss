@@ -3032,3 +3032,31 @@ h3.ghj {
 .mt-5 {
   margin-top: 5px;
 }
+.required:after{
+  content:" *";
+  color: $red;
+}
+.btn-wait{
+  color: $white;
+  background-color: $wait;
+}
+.btn-confirmed{
+  color: $white;
+  background-color: $confirmed;
+}
+.btn-shipping{
+  color: $white;
+  background-color: $shipping;
+}
+.btn-delivered{
+  color: $white;
+  background-color: $delivered;
+}
+.btn-rejected{
+  color: $white;
+  background-color: $rejected;
+}
+.btn-returned{
+  color: $black;
+  background-color: $returned;
+}
