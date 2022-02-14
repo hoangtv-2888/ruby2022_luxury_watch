@@ -11,6 +11,7 @@ class Order < ApplicationRecord
     rejected: 4,
     returned: 5
   }
+  delegate :name, :email, to: :user, prefix: :user
   validates :user_name_at_order, presence: true
   validates :address_at_order, presence: true
   scope :search_id,

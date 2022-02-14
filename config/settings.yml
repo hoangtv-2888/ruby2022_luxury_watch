@@ -44,3 +44,5 @@ order_status:
   confirmed: "confirmed"
 cost_step: 1_000_000
 number_of_select: 5
+items_hot_sell: 4
+size_hot_sell: 4

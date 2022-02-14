@@ -13,4 +13,10 @@ class UserMailer < ApplicationMailer
     @user = user
     mail to: @user.email, subject: t("admin.approve_order")
   end
+
+  def order_status order
+    @order = order
+    mail to: @order.user_email,
+         subject: t("status_change." << @order.status.to_s)
+  end
 end
