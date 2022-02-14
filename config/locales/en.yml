@@ -39,6 +39,7 @@ en:
   ignore_if_stay: "If you did not request your password to be reset,
                   please ignore this email and your password will stay as it is."
   submit: "Submit"
+  dashboard: "Dashboard"
   admin:
     title: "Dashboard"
     login: "Login"
