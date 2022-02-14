@@ -54,6 +54,7 @@
       <%= form_for(Order.new, url: orders_path) do |f| %>
         <%= hidden_field_tag :user_name_at_order, current_user.name %>
         <%= hidden_field_tag :address_at_order, current_user.address %>
+        <%= hidden_field_tag :discount_id %>
         <%= f.submit t("order"), class: "btn btn-primary button-order" %>
       <% end %>
     </div>

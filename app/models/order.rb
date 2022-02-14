@@ -16,4 +16,10 @@ class Order < ApplicationRecord
   validates :address_at_order, presence: true
   scope :search_id,
         ->(id){where("id = ?", id) if id}
+  scope :by_status,
+        ->(type){where("status = ?", type) if type}
+
+  def status_buy_again?
+    delivered? || returned? || rejected?
+  end
 end

@@ -53,3 +53,12 @@
     }
   }
 }
+
+.action-order {
+  display: flex;
+  justify-content: center;
+
+  form {
+    margin-left: 10px;
+  }
+}
