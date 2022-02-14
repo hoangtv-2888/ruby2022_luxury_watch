@@ -1,34 +1,42 @@
-5.times do
-  Category.create(name:Faker::Nation.language)
-end
+Category.create(name: "Casio")
+Category.create(name: "Philippe")
+Category.create(name: "Heuer")
+Category.create(name: "Rolex")
+Category.create(name: "Omega")
 
-30.times do
-  Product.create(name: Faker::Nation.capital_city,
-                 desc: Faker::Lorem.sentence(word_count: 3),
-                 type: "",
-                 material: Faker::Construction.material,
-                 category_id: Category.pluck(:id).sample)
-end
-
-sizes = [32, 33, 35, 38]
-
-4.times do
-  ProductSize.create(size: sizes[rand(0..3)],
-                     desc: "")
-end
-
-4.times do
-  ProductColor.create(color: Faker::Color.color_name,
-                      desc: "")
-end
-
-100.times do |n|
-  ProductDetail.create(quantity: n,
-                       price: 1000000 + n*50000,
-                       product_id: Product.pluck(:id).sample,
-                       product_size_id: ProductSize.pluck(:id).sample,
-                       product_color_id: ProductColor.pluck(:id).sample)
+Category.all.pluck(:name, :id).each do |name, id|
+  10.times do |n|
+    product = Product.create!(name: "#{name} #{n+1}",
+                  desc: Faker::Lorem.sentence(word_count: 15),
+                  type: "",
+                  material: Faker::Construction.material,
+                  category_id: id)
+    product.images.attach(io: File.open("app/assets/images/p-#{rand(1..8)}.png"), filename: 'watch', content_type: %w[image/jpeg image/gif image/png image/jpg])
+    product.images.attach(io: File.open("app/assets/images/p-#{rand(1..8)}.png"), filename: 'watch', content_type: %w[image/jpeg image/gif image/png image/jpg])
+    product.images.attach(io: File.open("app/assets/images/p-#{rand(1..8)}.png"), filename: 'watch', content_type: %w[image/jpeg image/gif image/png image/jpg])
+    product.images.attach(io: File.open("app/assets/images/p-#{rand(1..8)}.png"), filename: 'watch', content_type: %w[image/jpeg image/gif image/png image/jpg])
   end
+end
+
+ProductSize.create(size: "38", desc: "")
+ProductSize.create(size: "40", desc: "")
+ProductSize.create(size: "42", desc: "")
+
+ProductColor.create(color: "White", desc: "")
+ProductColor.create(color: "Black", desc: "")
+ProductColor.create(color: "Red", desc: "")
+ProductColor.create(color: "Green", desc: "")
+
+price = [1000000, 2000000, 3000000, 4000000]
+Product.all.each do |product|
+  5.times do |n|
+    ProductDetail.create(quantity: rand(50..100),
+      price: price[rand(3)] + n*50000,
+      product_id: product.id,
+      product_size_id: ProductSize.pluck(:id).sample,
+      product_color_id: ProductColor.pluck(:id).sample)
+  end
+end
 
 User.create!(name: "Example User",
             address: "quang nam",
@@ -63,12 +71,6 @@ end
                      user_id: User.pluck(:id).sample,
                      product_id: Product.pluck(:id).sample)
 end
-50.times do
-  CommentRate.create(content: Faker::Lorem.sentence(word_count: 100),
-                     star: rand(3..5),
-                     user_id: User.pluck(:id).sample,
-                     product_id: Product.pluck(:id).sample)
-end
 
 Discount.create!(
   start: Time.zone.now,
@@ -84,8 +86,10 @@ Discount.create!(
   code: "00000"
 )
 20.times do
-  order = Order.create(status: rand(0..4),
+  order = Order.create!(status: rand(0..4),
                        user_id: User.pluck(:id).sample,
+                       user_name_at_order: Faker::Name.name,
+                       address_at_order: "quang nam",
                        discount_id: Discount.pluck(:id).sample)
   3.times do |n|
     prdt = ProductDetail.select(:id, :price).sample

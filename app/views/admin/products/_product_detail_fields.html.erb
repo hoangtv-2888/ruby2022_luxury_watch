@@ -1,17 +1,13 @@
-<div class="nested-fields">
+<div class="nested-fields form-group">
    <%= f.label :product_size_id, t("size"), {class: "required"} %>
-   <br/>
    <%= f.collection_select :product_size_id, load_options(ProductSize, "size"),
-                                             :id, :size, {}, {class: "form-control"} %>
-   <br/>
+                                             :id, :size %>
    <%= f.label :product_color_id, t("color"), {class: "required"} %>
-   <br/>
    <%= f.collection_select :product_color_id, load_options(ProductColor, "color"),
-                                             :id, :color, {}, {class: "form-control"} %>
-   <br/>
+                                             :id, :color %>
    <%= f.label :quantity, t("quantity"), {class: "required"} %>
-   <%= f.number_field :quantity, {class: "form-control"} %>
+   <%= f.number_field :quantity %>
    <%= f.label :price, t("price"), {class: "required"} %>
-   <%= f.number_field :price, {class: "form-control"} %>
-   <%= link_to_remove_association t("delete"), f, class: "btn btn-warning mt-5" %>
+   <%= f.number_field :price %>
+   <%= link_to_remove_association t("delete"), f, class: "btn btn-warning mt-5 btn-sm" %>
 </div>

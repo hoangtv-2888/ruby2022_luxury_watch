@@ -3,7 +3,6 @@ class Order < ApplicationRecord
   belongs_to :discount, optional: true
   has_many :order_details, dependent: :destroy
   has_many :products, through: :order_details
-  scope :newest, ->{order created_at: :desc}
   enum status: {
     wait: 0,
     confirmed: 1,
@@ -22,4 +21,19 @@ class Order < ApplicationRecord
   def status_buy_again?
     delivered? || returned? || rejected?
   end
+
+  scope :newest, ->{order created_at: :desc}
+  scope :search, (lambda do |str|
+    if str
+      joins(:user)
+      .where(user: {name: str})
+      .or(search_by_id(str))
+    end
+  end)
+  scope :search_by_id, (lambda do |str|
+    if str
+      joins(:user)
+      .where(id: str)
+    end
+  end)
 end

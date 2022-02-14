@@ -1,11 +1,11 @@
 <div class="col-md-3 product-left">
   <div class="product-main simpleCart_shelfItem">
-    <%= image_tag "p-1.png", class: "img-responsive zoom-img" %>
+    <%= image_tag product.display_image(product.images.first) if product.images.attached? %>
     <div class="product-bottom">
       <h3><%= link_to product.name, product %></h3>
       <p><%= t "explore_now" %></p>
       <h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">
-        <%= product.product_detail.any? ? number_to_currency(product.product_detail.first.price) : t("contact_now") %>
+        <%= t "only"%> <%= product.product_detail.any? ? number_to_currency(product.product_detail.minimum(:price)) : t("contact_now") %>
       </span></h4>
     </div>
     <div class="srch srch1">

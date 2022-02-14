@@ -39,3 +39,8 @@ order_returned: 5
 order_all: "all"
 max_percent: 100
 default_discount_percent: 0
+order_status:
+  wait: "wait"
+  confirmed: "confirmed"
+cost_step: 1_000_000
+number_of_select: 5
