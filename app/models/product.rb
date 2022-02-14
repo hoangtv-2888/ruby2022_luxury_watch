@@ -39,4 +39,8 @@ class Product < ApplicationRecord
   def display_image image
     image.variant(resize: Settings.resize_images).processed
   end
+
+  def qua_pro_first
+    product_detail.first.quantity
+  end
 end

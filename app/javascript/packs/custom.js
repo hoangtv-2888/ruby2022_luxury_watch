@@ -22,10 +22,12 @@ $( document ).ready(function() {
     let current_quantity = input.val();
     let product_quantity = input.data("quantity");
 
+    current_quantity ++;
     if (product_quantity > current_quantity) {
-      current_quantity ++;
       input.val(current_quantity);
       input.change();
+    }else{
+      check_quantity_product(product_quantity, current_quantity, input);
     }
   });
 
@@ -44,30 +46,36 @@ $( document ).ready(function() {
   $(document).on("change", ".update-quantity input.quantity", function(e) {
     let product_detail_id = $(this).data("id");
     let quantity = $(this).val();
+    let product_quantity = $(this).data("quantity");
 
+    check_quantity_product(product_quantity, quantity, $(this));
     $.ajax({
       method: "POST",
       url: "/update_cart",
       data: {product_detail_id: product_detail_id, quantity: quantity},
       dataType: 'script'
     });
-
   });
 });
 
+function check_quantity_product(pro_quantity, quantity, obj) {
+  if (quantity > 99) {
+    obj.val("1")
+    alert(I18n.t("not_more_pro"));
+    return;
+  }
+  if (quantity > pro_quantity) {
+    obj.val("1")
+    alert(I18n.t("not_enough_product"));
+    return;
+  }
+}
+
 function sendSelectOptionCart(product_size_id, product_color_id, product_id) {
-   $.post("/select_option_cart",
-        {product_size_id: product_size_id,
-        product_color_id: product_color_id,
-        product_id: product_id},
-  function(res) {
-    if (res.cart_params != null) {
-      $(".quantity_product").text(res.cart_params.quantity)
-      $(".add_to_cart #product_detail_id").val(res.cart_params.id)
-      $("input.add_cart").attr("disabled", false)
-    }else {
-      $(".quantity_product").text("No product")
-      $("input.add_cart").attr("disabled", true)
-    }
+  $.ajax({
+    method: "POST",
+    url: "/select_option_cart",
+    data: {product_size_id: product_size_id, product_color_id: product_color_id, product_id: product_id},
+    dataType: 'script'
   });
 }

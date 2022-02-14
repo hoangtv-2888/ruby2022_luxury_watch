@@ -44,6 +44,7 @@ vi:
     login: "Đăng nhập"
     admin: "Trang quản trị"
     not_admin: "Bạn không có quyền vào trang này"
+    approve_order: "Phê duyệt đơn hàng"
   user:
     name: "Tên"
     email: "Địa chỉ email"
@@ -204,6 +205,9 @@ vi:
   order_date: "Ngày đặt"
   action: "Hành động"
   all_order: "Tất cả đơn hàng"
+  not_enough_product: "Số lượng sản phẩm trong kho không đủ"
+  not_more_pro: "Không được đặt quá 99 sản phẩm"
+  no_product: "Không có sản phẩm"
   show: "Xem"
   detail_order: "Chi tiết đơn hàng"
   cancel: "Hủy bỏ"

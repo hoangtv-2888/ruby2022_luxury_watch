@@ -80,6 +80,10 @@ class User < ApplicationRecord
     UserMailer.password_reset(self).deliver_now
   end
 
+  def send_email_approve_order
+    UserMailer.approve_order(self).deliver_now
+  end
+
   private
   def downcase_email
     email.downcase!

@@ -1,0 +1,11 @@
+<% if @product_detail.present? %>
+  $(".quantity_product").text("<%= @product_detail.quantity %>");
+  $(".price_product_detail").text("<%= number_to_currency(@product_detail.price) %>");
+  $(".add_to_cart #product_detail_id").val("<%= @product_detail.id %>");
+  $("input.add_cart").attr("disabled", false);
+<% else %>
+  $(".quantity_product").text("<%= t('no_product') %>");
+  $("input.add_cart").attr("disabled", true);
+  $(".price_product_detail").text("<%= number_to_currency(0) %>");
+  $(".add_to_cart #product_detail_id").val("0");
+<% end %>

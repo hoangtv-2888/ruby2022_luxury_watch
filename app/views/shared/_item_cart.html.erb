@@ -13,6 +13,9 @@
       data-quantity="<%= product_detail.quantity %>"
       value="<%= quantity %>" />
     <button class="plus _2rGMck">+</button>
+    <% if check_quantity_cart? quantity, product_detail.quantity %>
+      <span>(<%= t "not_enough_product" %>)</span>
+    <% end %>
   </div>
   </td>
   <td class="d-flex flex-column"><%= number_to_currency(product_detail.price) %></td>
