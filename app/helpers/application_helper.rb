@@ -19,4 +19,13 @@ module ApplicationHelper
   def load_options model, value
     model.select(:id, value.to_sym).order(value.to_sym)
   end
+
+  def load_price_option
+    options = Array.new
+    Settings.number_of_select.times do |n|
+      options << [(n + 1) * Settings.cost_step, (n + 1) * Settings.cost_step]
+    end
+    options.unshift([t("all"), 0])
+    options
+  end
 end

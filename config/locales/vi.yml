@@ -155,6 +155,7 @@ vi:
     orders:
       index:
         title: "Tất cả đơn hàng"
+        comfirm_all_new: "Chấp nhận tất cả đơn mới"
       show:
         title: "Chi tiết đơn hàng"
       status_form:
@@ -217,3 +218,6 @@ vi:
       default: "%a, %d %b %Y %H:%M:%S %z"
       long: "%B %d, %Y %H:%M"
       short: "%d %b %H:%M"
+  only: "Chỉ từ"
+  more_than: "Lớn hơn"
+  less_than: "Nhỏ hơn"

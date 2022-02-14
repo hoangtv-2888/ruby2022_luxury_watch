@@ -22,6 +22,7 @@ class HomesController < ApplicationController
   end
 
   def filtering_params params
-    params.slice(:cost, :category_id, :product_color_id, :product_size_id)
+    params.slice(:cost, :category_id, :product_color_id,
+                 :product_size_id, :min_price, :max_price)
   end
 end

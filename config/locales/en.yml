@@ -155,6 +155,7 @@ en:
     orders:
       index:
         title: "All order"
+        comfirm_all_new: "Comfirm All New Order"
       show:
         title: "Order Details"
       status_form:
@@ -221,3 +222,6 @@ en:
       default: "%a, %d %b %Y %H:%M:%S %z"
       long: "%B %d, %Y %H:%M"
       short: "%d %b %H:%M"
+  only: "Only"
+  more_than: "More than"
+  less_than: "Less than"

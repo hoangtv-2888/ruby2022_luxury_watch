@@ -4,12 +4,12 @@
       <div class="col-md-9 single-main-left">
         <div class="sngl-top">
           <div class="col-md-5 single-top-left">
-            <div class="flexslider">
-              <ul class="slides">
-                <li data-thumb="images/p-1.png">
-                  <div class="thumb-image"> <%= image_tag "p-1.png", class: "img-responsive" %> </div>
-                </li>
-              </ul>
+            <div class="d-flex flex-wrap">
+              <% if @product.images.attached? %>
+                <% @product.images.each do |img| %>
+                    <%= image_tag @product.display_image(img) %>
+                <% end %>
+              <% end %>
             </div>
           </div>
           <div class="col-md-7 single-top-right">
@@ -27,7 +27,7 @@
                 <div class="clearfix"> </div>
               </div>
               <h5 class="item_price price_product_detail">
-                <%= @product.product_detail.any? ? number_to_currency(@product.product_detail.first.price) : t("contact_now") %>
+                <%= @product.product_detail.any? ? number_to_currency(@product.product_detail.minimum(:price)) : t("contact_now") %>
               </h5>
               <p><%= @product.desc %></p>
               <div class="available">

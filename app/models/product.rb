@@ -35,7 +35,16 @@ class Product < ApplicationRecord
     joins(:product_detail)
     .where(product_detail: {product_color_id: product_color_id})
   end)
-
+  scope :filter_by_max_price, (lambda do |max_price|
+    joins(:product_detail)
+    .group("product_id")
+    .having("min(price) < ?", max_price)
+  end)
+  scope :filter_by_min_price, (lambda do |min_price|
+    joins(:product_detail)
+    .group("product_id")
+    .having("min(price) > ?", min_price)
+  end)
   def display_image image
     image.variant(resize: Settings.resize_images).processed
   end
