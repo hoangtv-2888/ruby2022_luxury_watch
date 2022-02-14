@@ -1,0 +1,6 @@
+<div class="container statistics">
+  <h3 class="text-center"><%= t "statistics_products" %></h3>
+  <%= line_chart @orders %>
+  <h3 class="text-center"><%= t "statistics_users" %></h3>
+  <%= column_chart @users %>
+</div>

@@ -40,6 +40,9 @@ en:
                   please ignore this email and your password will stay as it is."
   submit: "Submit"
   dashboard: "Dashboard"
+  statistics_products: "Statistics of the number of best-selling products"
+  statistics_users: "Statistics of customers who register for an account"
+  statistics: "Statistics"
   admin:
     title: "Dashboard"
     login: "Login"
