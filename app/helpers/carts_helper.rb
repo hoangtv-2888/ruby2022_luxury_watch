@@ -56,4 +56,8 @@ module CartsHelper
   def active_class_order type
     type == params[:type].to_i ? "active" : ""
   end
+
+  def check_quantity_cart? quantity, pro_quantity
+    pro_quantity < quantity
+  end
 end

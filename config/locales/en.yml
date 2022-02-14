@@ -44,6 +44,7 @@ en:
     login: "Login"
     admin: "Admin page"
     not_admin: "You do not have permission to access this site"
+    approve_order: "Order approval"
   user:
     name: "Name"
     email: "Email"
@@ -212,6 +213,9 @@ en:
   show: "Show"
   detail_order: "Detail Order"
   repurchase: "Repurchase"
+  not_enough_product: "The number of products in stock is not enough"
+  not_more_pro: "Can't order more than 99 products"
+  no_product: "No product"
   time:
     formats:
       default: "%a, %d %b %Y %H:%M:%S %z"

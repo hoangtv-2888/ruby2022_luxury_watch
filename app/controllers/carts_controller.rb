@@ -1,4 +1,6 @@
 class CartsController < ApplicationController
+  before_action :load_product, only: %i(create)
+
   def index
     @products = {}
 
@@ -9,7 +11,7 @@ class CartsController < ApplicationController
   end
 
   def create
-    add_cart params[:product_detail_id]
+    add_cart @product_detail.id
     flash[:success] = t "success"
     respond_to do |format|
       format.html{redirect_to request.referer}
@@ -18,10 +20,11 @@ class CartsController < ApplicationController
   end
 
   def select_cart
-    product_detail = load_product_detail cart_params
+    @product_detail = ProductDetail.find_by cart_params
 
     respond_to do |format|
-      format.json{render json: {cart_params: product_detail}}
+      format.html{redirect_to request.referer}
+      format.js
     end
   end
 
@@ -61,15 +64,23 @@ class CartsController < ApplicationController
                                        end
   end
 
-  def load_product_detail params
-    ProductDetail.find_by params
-  end
-
   def add_cart id
     current_carts[id] = if current_carts.key?(id)
                           current_carts[id] + Settings.quantity_defaut_1
                         else
                           Settings.quantity_defaut_1
                         end
+  end
+
+  def load_product
+    @product_detail = ProductDetail.find_by(id: params[:product_detail_id])
+    return if @product_detail.present?
+
+    flash[:warning] = t "not_found"
+    if request.xhr?
+      render(js: "window.location = '#{request.referer}'") && return
+    else
+      redirect_to root_path
+    end
   end
 end

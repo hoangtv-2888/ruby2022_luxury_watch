@@ -1,4 +1,4 @@
 $('#quantity_<%= @product_detail.id %> .item_total_money').html('<%= number_to_currency(@quantity * @product_detail.price) %>');
 $('#quantity_<%= @product_detail.id %> .item_total_money').data("money", "<%= @quantity * @product_detail.price %>");
 $('.total_product').html('<%= total_quantity_cart %>');
-$(".total_money_cart").html('<%= total_money_cart %>');
+$(".total_money_cart").html('<%= number_to_currency(total_money_cart) %>');
