@@ -20,6 +20,8 @@ class User < ApplicationRecord
   validates :password, presence: true,
             length: {minimum: Settings.length_digit_6},
             allow_nil: true
+  scope :search_by_name,
+        ->(name){where("LOWER(name) LIKE ?", "%#{name.downcase}%") if name}
 
   has_secure_password
 

@@ -45,6 +45,7 @@ vi:
     admin: "Trang quản trị"
     not_admin: "Bạn không có quyền vào trang này"
     approve_order: "Phê duyệt đơn hàng"
+  dashboard: "Bảng điều khiển"
   user:
     name: "Tên"
     email: "Địa chỉ email"
