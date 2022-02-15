@@ -45,6 +45,12 @@ class Product < ApplicationRecord
     .group("product_id")
     .having("min(price) > ?", min_price)
   end)
+  scope :hot_sell, (lambda do |size|
+    joins(product_detail: :order_details)
+    .group("product_id")
+    .order("sum(order_details.quantity) DESC")
+    .limit(size)
+  end)
   def display_image image
     image.variant(resize: Settings.resize_images).processed
   end

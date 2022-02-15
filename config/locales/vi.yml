@@ -225,3 +225,9 @@ vi:
   only: "Chỉ từ"
   more_than: "Lớn hơn"
   less_than: "Nhỏ hơn"
+  status_change:
+    confirmed: "Đơn hàng của bạn đã được xác nhận và sẽ sớm được giao đi"
+    shipping: "Đơn hàng của bạn đang được giao"
+    delivered: "Đơn hàng đã giao thành công, cảm ơn bạn đã mua hàng."
+    rejected: "Đơn hàng đã bị hủy"
+  hot_sell: "Bán chạy"

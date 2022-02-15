@@ -229,3 +229,9 @@ en:
   only: "Only"
   more_than: "More than"
   less_than: "Less than"
+  status_change:
+    confirmed: "Your order has been confirmed and will be shipped soon"
+    shipping: "Your order is shipping now"
+    delivered: "Your order has been successfully delivered, thank you for your purchase."
+    rejected: "Order has been cancelled, sorry"
+  hot_sell: "Hot sell"

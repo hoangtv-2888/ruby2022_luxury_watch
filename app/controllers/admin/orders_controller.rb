@@ -2,7 +2,7 @@ class Admin::OrdersController < Admin::AdminController
   before_action :load_order, except: :index
 
   def index
-    @orders = Order.includes(:order_details, :user)
+    @orders = Order.includes({order_details: [:product_detail]}, :user)
                    .search(params[:str]).newest
     if valid_status? params[:find_status]
       @orders = @orders.public_send(params[:find_status].to_s)
@@ -16,6 +16,7 @@ class Admin::OrdersController < Admin::AdminController
   def update
     if valid_status? params[:order][:status]
       @order.public_send("#{params[:order][:status]}!")
+      send_mail @order
       flash[:success] = t "success"
     else
       flash[:danger] = t "error"
@@ -26,7 +27,8 @@ class Admin::OrdersController < Admin::AdminController
   private
 
   def load_order
-    @order = Order.find_by id: params[:id]
+    @order = Order.includes(order_details:
+                            :product_detail).find_by id: params[:id]
     return if @order
 
     flash[:danger] = t "not_found"
@@ -43,6 +45,7 @@ class Admin::OrdersController < Admin::AdminController
     if order_list.public_send(Settings.order_status.wait).any?
       order_list.public_send(Settings.order_status.wait).each do |order|
         order.public_send("#{status}!")
+        send_mail order
       end
       flash[:success] = t "success"
     else
@@ -53,5 +56,9 @@ class Admin::OrdersController < Admin::AdminController
 
   def valid_status? status
     Order.statuses.include? status
+  end
+
+  def send_mail order
+    UserMailer.order_status(order).deliver_now
   end
 end

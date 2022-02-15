@@ -7,7 +7,7 @@ class HomesController < ApplicationController
       end
     end
     @pagy, @products = pagy @products, items: Settings.items_per_page
-
+    @hot_sell = Product.hot_sell(Settings.size_hot_sell)
     load_filter_options
   end
 

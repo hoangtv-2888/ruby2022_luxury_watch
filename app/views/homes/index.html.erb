@@ -59,4 +59,14 @@
   <div class="container">
     <%== pagy_bootstrap_nav(@pagy) %>
   </div>
+  <div class="container">
+  <div class="row justify-content-center">
+    <h1 class="text-center"><%= t "hot_sell" %></h1>
+  </div>
+    <div class="product-top">
+      <div class="product-one">
+        <%= render partial: "shared/item_product", collection: @hot_sell, as: :product %>
+      </div>
+    </div>
+  </div>
 </div>
