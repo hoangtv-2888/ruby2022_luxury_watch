@@ -4,4 +4,8 @@ class OrderDetail < ApplicationRecord
 
   validates :quantity, presence: true
   validates :price_at_order, presence: true
+
+  scope :by_order_status, (lambda do |status|
+    joins(:order).where(order: {status: [status]})
+  end)
 end

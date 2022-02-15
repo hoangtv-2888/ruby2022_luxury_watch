@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       resources :categories
       resources :products
       resources :orders
+      resources :revenue_managements, only: %i(index)
 
       get "/search-users", to: "users#search", as: "search_users"
     end

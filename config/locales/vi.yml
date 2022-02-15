@@ -46,6 +46,9 @@ vi:
     not_admin: "Bạn không có quyền vào trang này"
     approve_order: "Phê duyệt đơn hàng"
   dashboard: "Bảng điều khiển"
+  statistics_products: "Thống kê số lượng sản phẩm bán chạy"
+  statistics_users: "Thống kê khách hàng đăng ký tài khoản"
+  statistics: "Số liệu thống kê"
   user:
     name: "Tên"
     email: "Địa chỉ email"
