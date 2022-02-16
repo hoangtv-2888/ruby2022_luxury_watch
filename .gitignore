@@ -53,7 +53,6 @@ yarn-debug.log*
 config/database.yml
 config/credentials.yml.enc
 test
-spec
 .browserslistrc
 
 /public/packs
