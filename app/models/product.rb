@@ -8,7 +8,9 @@ class Product < ApplicationRecord
                                 reject_if: :all_blank,
                                 allow_destroy: true
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true,
+            length: {maximum: Settings.max_name_length}
+
   validates :desc, presence: true,
             length: {maximum: Settings.max_comment_length}
   validates :images,
@@ -52,10 +54,10 @@ class Product < ApplicationRecord
     .limit(size)
   end)
   def display_image image
-    image.variant(resize: Settings.resize_images).processed
+    image.variant(resize: Settings.resize_images).processed if image.present?
   end
 
   def qua_pro_first
-    product_detail.first.quantity
+    product_detail.first.quantity if product_detail.first.present?
   end
 end
