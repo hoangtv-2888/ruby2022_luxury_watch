@@ -2,8 +2,6 @@ class UsersController < ApplicationController
   before_action :find_user_by_id, :check_user_activated,
                 :correct_user, only: %i(edit update)
 
-  def index; end
-
   def new
     @user = User.new
   end
