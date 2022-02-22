@@ -1,0 +1,31 @@
+<% provide :button_text, t("update") %>
+<div class="register">
+  <div class="container">
+    <div class="register-top heading">
+      <h2><%= t "update_profile" %></h2>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <%= f.label t "user.name" %>
+          <%= f.text_field :name, class: "form-control" %>
+          <%= f.label t "user.address" %>
+          <%= f.text_field :address, class: "form-control" %>
+          <%= f.label t "user.phone" %>
+          <%= f.text_field :phone, class: "form-control" %>
+          <%= f.label t "user.email" %>
+          <%= f.email_field :email, class: "form-control" %>
+          <%= f.label :current_password %>
+          <%= f.password_field :current_password, class: "form-control", autocomplete: "current-password" %>
+          <%= f.label t "user.password" %>
+          <%= f.password_field :password, class: "form-control" %>
+          <%= f.label t "user.password_confirmation" %>
+          <%= f.password_field :password_confirmation, class: "form-control" %>
+          <%= f.submit yield(:button_text), class: "btn btn-primary address" %>
+        <% end %>
+        <p><%= button_to t(".cancel_account"), registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+      </div>
+    </div>
+  </div>
+</div>

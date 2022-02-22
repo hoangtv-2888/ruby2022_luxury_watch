@@ -1,4 +1,5 @@
 class CommentRatesController < ApplicationController
+  before_action :authenticate_user!
   before_action :load_product, only: :create
   before_action :load_comment_rate, :correct_user?, only: :destroy
 

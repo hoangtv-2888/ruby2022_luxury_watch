@@ -1,5 +1,5 @@
 class Admin::AdminController < ApplicationController
-  before_action :check_login, :check_admin
+  before_action :authenticate_user!, :is_admin?
 
   layout "admin"
 
@@ -9,5 +9,12 @@ class Admin::AdminController < ApplicationController
 
     flash[:warning] = t "not_found"
     redirect_to admin_root_path
+  end
+
+  def is_admin?
+    return if current_user.admin?
+
+    flash[:danger] = t "admin.not_admin"
+    redirect_to root_path
   end
 end

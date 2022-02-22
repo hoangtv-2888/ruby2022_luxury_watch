@@ -1,11 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
   scope "(:locale)", locale: /en|vi/ do
     root "homes#index"
-
-    get "/signup", to: "users#new"
-    get "/login", to: "sessions#new"
-    post "/login", to: "sessions#create"
-    delete "/logout", to: "sessions#destroy"
     get "/contact", to: "homes#contact"
     get "/cart", to: "carts#index"
     post "/add_to_cart/:id", to: "carts#create", as: "add_to_cart"
@@ -14,7 +10,12 @@ Rails.application.routes.draw do
     delete "/remove_from_cart/:id", to: "carts#destroy", as: "remove_from_cart"
     get "/check_code", to: "discounts#show", as: "check_code"
     get "/history-order/:type", to: "orders#index", as: "history_orders"
-
+    as :user do
+      get "/login", to: "devise/sessions#new"
+      post "/login", to: "devise/sessions#create"
+      delete "/logout", to: "devise/sessions#destroy"
+      get "/signup", to: "devise/registrations#new"
+    end
     resources :users
     resources :account_activations, only: :edit
     resources :password_resets, except: %i(index destroy)
