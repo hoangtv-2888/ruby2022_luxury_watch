@@ -68,6 +68,10 @@ en:
                           Click on the link below to activate your account:"
     not_correct_user: "Incorrect account"
     settings: "Settings"
+    current_sign_in_ip: "Current ip address"
+    last_sign_in_ip: "IP address of last login"
+    sign_in_count: "Number of logins"
+    current_sign_in_at: "Current login time"
     error:
       error_valid: "The form contains %{error}"
       error: "error"
