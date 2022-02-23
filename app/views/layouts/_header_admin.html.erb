@@ -6,10 +6,10 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right admin">
         <li><%= link_to t("admin.title"), admin_root_path %></li>
-        <% if logged_in? %>
+        <% if user_signed_in? %>
           <li class="user-name"><%= current_user.name %></li>
           <li><%= link_to t("logout"), logout_path, method: :delete %></li>
-          <li><%= link_to t("settings"), edit_user_path(current_user) %></li>
+          <li><%= link_to t("settings"), edit_user_registration_path(current_user) %></li>
         <% else %>
           <li><%= link_to t("login"), login_path %></li>
           <li><%= link_to t("singup"), signup_path %></li>

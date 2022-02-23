@@ -1,0 +1,18 @@
+<div class="register">
+  <div class="container">
+    <div class="register-top heading">
+      <h2><%= t ".resend" %></h2>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <%= f.label :email %><br />
+        <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+        <%= f.submit t(".resend"), class: "btn btn-primary" %>
+      <% end %>
+      <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>

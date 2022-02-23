@@ -20,7 +20,7 @@ require("jquery")
 require("@nathanvda/cocoon")
 import "bootstrap/dist/css/bootstrap"
 import "bootstrap/dist/js/bootstrap"
-
+global.toastr = require("toastr")
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

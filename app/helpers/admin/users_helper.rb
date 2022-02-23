@@ -1,5 +1,5 @@
 module Admin::UsersHelper
   def show_activate user
-    t "user.#{user.activated? ? 'unactivate' : 'activate'}"
+    t "user.#{user.confirmed? ? 'unactivate' : 'activate'}"
   end
 end

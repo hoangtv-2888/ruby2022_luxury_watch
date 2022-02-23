@@ -1,0 +1,5 @@
+<p><% t "hi" %> <%= @email %>!</p>
+
+<p><%= t ".activity" %></p>
+
+<p><%= link_to t(".confirm"), confirmation_url(@resource, confirmation_token: @token) %></p>
