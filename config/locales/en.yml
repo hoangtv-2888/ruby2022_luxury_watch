@@ -235,3 +235,4 @@ en:
     delivered: "Your order has been successfully delivered, thank you for your purchase."
     rejected: "Order has been cancelled, sorry"
   hot_sell: "Hot sell"
+  not_permission: "You are not allowed to access"
