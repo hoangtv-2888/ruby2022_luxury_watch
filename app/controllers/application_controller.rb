@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   include Pagy::Backend
 
+  rescue_from CanCan::AccessDenied, with: :access_denied
+
   protected
 
   def configure_permitted_parameters
@@ -36,5 +38,10 @@ class ApplicationController < ActionController::Base
 
     flash[:danger] = t "find_fail"
     redirect_to root_url
+  end
+
+  def access_denied
+    flash[:danger] = t "not_permission"
+    redirect_to root_path
   end
 end

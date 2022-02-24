@@ -1,5 +1,5 @@
 class Admin::ProductsController < Admin::AdminController
-  before_action :load_product, except: %i(index new create)
+  load_and_authorize_resource
 
   def index
     @pagy, @products = pagy Product.newest
@@ -16,8 +16,13 @@ class Admin::ProductsController < Admin::AdminController
       if params.dig(:product, :images)
         @product.images.attach params[:product][:images]
       end
-      handle_create_transaction @product
+      @product.save!
+      flash[:success] = t "success"
+      redirect_to admin_product_path @product
     end
+  rescue StandardError => e
+    flash.now[:danger] = e
+    render :new
   end
 
   def edit; end
@@ -27,27 +32,18 @@ class Admin::ProductsController < Admin::AdminController
       if params.dig(:product, :images)
         @product.images.attach params[:product][:images]
       end
-      if @product.update product_params
-        flash[:success] = t "success"
-        redirect_to admin_product_path @product
-      else
-        flash.now[:danger] = t "error"
-        render :edit
-      end
+      @product.update! product_params
+      flash[:success] = t "success"
+      redirect_to admin_product_path @product
     end
+  rescue StandardError => e
+    flash.now[:danger] = e
+    render :edit
   end
 
   def show; end
 
   private
-
-  def load_product
-    @product = Product.includes(:product_detail).find_by id: params[:id]
-    return if @product
-
-    flash[:danger] = t "not_found"
-    redirect_to root_path
-  end
 
   def product_params
     params.require(:product)
@@ -57,18 +53,5 @@ class Admin::ProductsController < Admin::AdminController
                                               :price,
                                               :product_size_id,
                                               :product_color_id])
-  end
-
-  def handle_create_transaction product
-    if product.save
-      flash[:success] = t "success"
-      redirect_to admin_product_path product
-    else
-      flash.now[:danger] = t "error"
-      render :new
-    end
-  rescue StandardError => e
-    flash.now[:danger] = e
-    render :new
   end
 end

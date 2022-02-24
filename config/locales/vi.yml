@@ -231,3 +231,4 @@ vi:
     delivered: "Đơn hàng đã giao thành công, cảm ơn bạn đã mua hàng."
     rejected: "Đơn hàng đã bị hủy"
   hot_sell: "Bán chạy"
+  not_permission: "Bạn không có quyền truy cập"
