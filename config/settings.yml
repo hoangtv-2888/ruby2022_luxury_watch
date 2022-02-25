@@ -46,3 +46,6 @@ cost_step: 1_000_000
 number_of_select: 5
 items_hot_sell: 4
 size_hot_sell: 4
+number_30: 30
+number_10: 10
+number_1: 1

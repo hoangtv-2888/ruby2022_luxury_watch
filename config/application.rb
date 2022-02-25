@@ -12,5 +12,7 @@ module Ruby2022LuxuryWatch
     config.i18n.default_locale = :en
 
     config.action_view.embed_authenticity_token_in_remote_forms = true
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end
