@@ -68,6 +68,12 @@ vi:
                            Nhấp vào liên kết bên dưới để kích hoạt tài khoản của bạn:"
     not_correct_user: "Tài khoản không chính xác"
     settigns: "Cài đặt"
+    current_sign_in_ip: "Địa chỉ ip hiện tại"
+    last_sign_in_ip: "Địa chỉ ip lần đăng nhập trước"
+    sign_in_count: "Số lần đăng nhập"
+    current_sign_in_at: "Thời gian đăng nhập hiện tại"
+    last_sign_in_at: "Last login time"
+    last_sign_in_at: "Thời gian đăng nhập trước đó"
     error:
       error_valid: "Biểu mẫu chứa %{error}"
       error: "Lỗi"

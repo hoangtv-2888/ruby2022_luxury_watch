@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   include CartsHelper
   include OrdersHelper
   before_action :set_locale, :current_carts
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   include Pagy::Backend
