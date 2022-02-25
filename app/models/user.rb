@@ -24,8 +24,8 @@ class User < ApplicationRecord
   end
 
   def timeout_in
-    return 10.seconds if admin?
+    return Settings.number_10.days if admin?
 
-    10.seconds
+    Settings.number_1.year
   end
 end

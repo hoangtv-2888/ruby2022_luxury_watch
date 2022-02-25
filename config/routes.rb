@@ -1,6 +1,7 @@
+require "sidekiq/web"
 Rails.application.routes.draw do
-  devise_for :users
   scope "(:locale)", locale: /en|vi/ do
+    mount Sidekiq::Web => "/sidekiq"
     root "homes#index"
     get "/contact", to: "homes#contact"
     get "/cart", to: "carts#index"
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
       delete "/logout", to: "devise/sessions#destroy"
       get "/signup", to: "devise/registrations#new"
     end
-    resources :users
+    devise_for :users
     resources :account_activations, only: :edit
     resources :password_resets, except: %i(index destroy)
     resources :products

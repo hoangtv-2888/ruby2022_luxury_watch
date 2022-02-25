@@ -11,7 +11,7 @@ class CartsController < ApplicationController
   end
 
   def create
-    add_cart @product_detail.id
+    add_cart params[:product_detail_id]
     flash[:success] = t "success"
     respond_to do |format|
       format.html{redirect_to request.referer}

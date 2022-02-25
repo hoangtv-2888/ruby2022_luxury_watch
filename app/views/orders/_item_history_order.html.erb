@@ -4,7 +4,7 @@
       <%= odt.product_detail.product_name %>|
     <% end %>
   </td>
-  <td><%= order.order_details.count %></td>
+  <td><%= order.order_details.sum("quantity") %></td>
   <td><%= number_to_currency cal_purchase_price(order.discount, total_price(order)) %></td>
   <td><%= l(order.created_at, format: :short) %></td>
   <td class="action-order">
