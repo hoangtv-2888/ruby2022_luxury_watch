@@ -90,7 +90,7 @@
               <% end %>
             </div>
             <p><%= comment.content %></p>
-            <% if can? :delete, comment %>
+            <% if can? :destroy, comment %>
               <%= link_to t("delete"), comment, method: :delete, data:{confirm: t("are_you_sure")}, class: "text-danger" %>
             <% end %>
           <% end %>

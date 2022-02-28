@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   has_many :comment_rates, dependent: :destroy
   has_many :products, through: :comment_rates
   has_many_attached :images
+  acts_as_paranoid
   accepts_nested_attributes_for :product_detail,
                                 reject_if: :all_blank,
                                 allow_destroy: true
@@ -39,16 +40,16 @@ class Product < ApplicationRecord
   end)
   scope :filter_by_max_price, (lambda do |max_price|
     if max_price
-      joins(:product_detail)
-      .group("product_id")
-      .having("min(price) <= ?", max_price)
+      left_joins(:product_detail)
+      .group(:id)
+      .having("min(product_details.price) <= ?", max_price)
     end
   end)
   scope :filter_by_min_price, (lambda do |min_price|
     if min_price
-      joins(:product_detail)
-      .group("products.id")
-      .having("min(price) >= ?", min_price)
+      left_joins(:product_detail)
+      .group(:id)
+      .having("min(product_details.price) >= ?", min_price)
     end
   end)
   scope :hot_sell, (lambda do |size|

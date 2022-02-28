@@ -16,6 +16,13 @@ RSpec.describe Admin::ProductsController, type: :controller do
     end
   end
 
+  describe "GET #new" do
+    it "should assigns product to @product" do
+      get:new
+      expect(assigns(:product))
+    end
+  end
+
   describe "POST #create" do
     context "when has permissions and success" do
       let(:product_params){FactoryBot.attributes_for :product}
@@ -35,6 +42,16 @@ RSpec.describe Admin::ProductsController, type: :controller do
       end
       it "should flash success" do
         expect(flash[:success]).to eq I18n.t("success")
+      end
+    end
+  end
+
+  describe "DELETE #destroy" do
+    context "when has permissions and success" do
+      it "should delete the product" do
+        expect do
+          delete :destroy, params:{id: product1.id}
+        end.to change{Product.count}.by -1
       end
     end
   end

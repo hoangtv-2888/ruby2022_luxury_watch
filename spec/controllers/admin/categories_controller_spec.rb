@@ -57,5 +57,18 @@ RSpec.describe Admin::CategoriesController, type: :controller do
         expect(flash[:success]).to eq I18n.t("success")
       end
     end
+
+    context "when fails" do
+      before do
+        patch :update, params:{id: category1.id, category:{name: ""}}
+
+      end
+      it "should flash danger" do
+        expect(flash[:danger]).to eq I18n.t("error")
+      end
+      it "should render edit" do
+        expect(subject).to render_template :edit
+      end
+    end
   end
 end
