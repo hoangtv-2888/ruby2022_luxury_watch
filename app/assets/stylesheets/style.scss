@@ -3039,25 +3039,28 @@ h3.ghj {
 }
 .btn-wait{
   color: $white;
-  background-color: $wait;
+  background-color: $wait !important;
 }
 .btn-confirmed{
   color: $white;
-  background-color: $confirmed;
+  background-color: $confirmed !important;
 }
 .btn-shipping{
   color: $white;
-  background-color: $shipping;
+  background-color: $shipping !important;
 }
 .btn-delivered{
   color: $white;
-  background-color: $delivered;
+  background-color: $delivered !important;
 }
 .btn-rejected{
   color: $white;
-  background-color: $rejected;
+  background-color: $rejected !important;
 }
 .btn-returned{
-  color: $black;
-  background-color: $returned;
+  color: $white;
+  background-color: $returned !important;
+}
+.mr-5{
+  margin-right: 5px;
 }

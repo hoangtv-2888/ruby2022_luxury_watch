@@ -38,26 +38,47 @@ class Product < ApplicationRecord
     .where(product_detail: {product_color_id: product_color_id})
   end)
   scope :filter_by_max_price, (lambda do |max_price|
-    joins(:product_detail)
-    .group("product_id")
-    .having("min(price) < ?", max_price)
+    if max_price
+      joins(:product_detail)
+      .group("product_id")
+      .having("min(price) <= ?", max_price)
+    end
   end)
   scope :filter_by_min_price, (lambda do |min_price|
-    joins(:product_detail)
-    .group("product_id")
-    .having("min(price) > ?", min_price)
+    if min_price
+      joins(:product_detail)
+      .group("products.id")
+      .having("min(price) >= ?", min_price)
+    end
   end)
   scope :hot_sell, (lambda do |size|
     joins(product_detail: :order_details)
-    .group("product_id")
+    .group("products.id")
     .order("sum(order_details.quantity) DESC")
     .limit(size)
   end)
+  scope :sort_by_total_quantity_desc, (lambda do
+    left_joins(:product_detail)
+    .group(:id).order("SUM(product_details.quantity) DESC")
+  end)
+  scope :sort_by_total_quantity_asc, (lambda do
+    left_joins(:product_detail)
+    .group(:id).order("SUM(product_details.quantity) ASC")
+  end)
+
   def display_image image
     image.variant(resize: Settings.resize_images).processed if image.present?
   end
 
+  def display_thumbnail image
+    image.variant(resize: Settings.thumbnail).processed if image.present?
+  end
+
   def qua_pro_first
     product_detail.first.quantity if product_detail.first.present?
+  end
+
+  def self.ransackable_scopes _auth_object
+    %i(filter_by_max_price filter_by_min_price)
   end
 end

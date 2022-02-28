@@ -1,45 +1,38 @@
 <div class="product">
   <div class="container">
     <div>
-      <%= form_tag homes_path, method: :get do %>
+      <%= search_form_for @q, url: homes_path do |f| %>
         <div class="form-row">
           <div class="form-group col-md-2">
             <label><%= t "category" %>:</label>
-            <%= select_tag :category_id, options_for_select(@categories, params[:category_id]),
-                                                            class: "form-control",
-                                                            onchange: "this.form.submit()" %>
+            <%= f.select :category_id_eq, options_for_select(@categories, @q.category_id_eq), {},
+                                                            class: "form-control" %>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-2">
             <label><%= t "colour" %>:</label>
-            <%= select_tag :product_color_id, options_for_select(@colours, params[:product_color_id]),
-                                                                 class: "form-control",
-                                                                 onchange: "this.form.submit()" %>
+            <%= f.select :product_detail_product_color_id_eq, options_for_select(@colours, @q.product_detail_product_color_id_eq), {},
+                                                                 class: "form-control" %>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-2">
             <label><%= t "size" %>:</label>
-            <%= select_tag :product_size_id, options_for_select(@sizes, params[:product_size_id]),
-                                                                class: "form-control",
-                                                                onchange: "this.form.submit()" %>
+            <%= f.select :product_detail_product_size_id_eq, options_for_select(@sizes, @q.product_detail_product_size_id_eq), {},
+                                                                class: "form-control" %>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-2">
-            <label><%= t "more_than" %>:</label>
-            <%= select_tag :min_price, options_for_select(load_price_option, params[:min_price]),
-                                                          class: "form-control",
-                                                          onchange: "this.form.submit()" %>
+            <%= f.label t "from_price" %>
+            <%= f.search_field :filter_by_min_price, placeholder: t("search"), class: "form-control" %>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-2">
-            <label><%= t "less_than" %>:</label>
-            <%= select_tag :max_price, options_for_select(load_price_option, params[:max_price]),
-                                                          class: "form-control",
-                                                          onchange: "this.form.submit()" %>
+            <%= f.label t "to_price" %>
+            <%= f.search_field :filter_by_max_price, placeholder: t("search"), class: "form-control" %>
           </div>
         </div>
         <div class="form-row">
@@ -49,6 +42,7 @@
           </div>
         </div>
       <% end %>
+      <%= sort_link @q, :created_at, t("by_new"), default_order: :desc %>
     </div>
     <div class="product-top">
       <div class="product-one">

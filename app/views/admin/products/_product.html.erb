@@ -1,7 +1,8 @@
 <tr>
+  <td><%= product.id %> </td>
   <td><%= link_to product.name, admin_product_path(product) %></td>
-  <td><%= image_tag product.display_image(product.images.first) if product.images.attached? %>
+  <td><%= image_tag product.display_thumbnail(product.images.first) if product.images.attached? %>
   <td><%= product.product_detail.sum(:quantity) %></td>
   <td><%= link_to t("edit"), edit_admin_product_path(product),
-                             class: "btn btn-warning" %></td>
+                             class: "btn btn-sm btn-warning" %></td>
 </tr>

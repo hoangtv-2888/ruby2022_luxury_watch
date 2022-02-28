@@ -69,9 +69,9 @@
     </div>
     <div class="col-md-3 header-right">
       <div class="search-bar">
-        <%= form_tag homes_path, method: :get do %>
-          <%= text_field_tag :name, params[:name], placeholder: t("search"), class: "d-inline-block" %>
-          <%= submit_tag t("search"), class: "btn btn-primary" %>
+        <%= search_form_for Product.ransack(), url: homes_path do |f|%>
+          <%= f.search_field :name_or_desc_cont, placeholder: t("search"), class: "d-inline-block" %>
+          <%= f.submit t("search"), {class: "btn btn-primary"} %>
         <% end %>
       </div>
     </div>

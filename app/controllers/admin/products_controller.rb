@@ -2,7 +2,8 @@ class Admin::ProductsController < Admin::AdminController
   load_and_authorize_resource
 
   def index
-    @pagy, @products = pagy Product.newest
+    @q = Product.includes(:product_detail).newest.ransack(params[:q])
+    @pagy, @products = pagy @q.result
   end
 
   def new
@@ -52,6 +53,7 @@ class Admin::ProductsController < Admin::AdminController
                                               :quantity,
                                               :price,
                                               :product_size_id,
-                                              :product_color_id])
+                                              :product_color_id,
+                                              :_destroy])
   end
 end
