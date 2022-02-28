@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::AdminController
-  before_action :find_user_by_id, only: %i(show update)
+  load_resource only: %i(show update)
   before_action :load_search_user, only: %i(search)
 
   def index

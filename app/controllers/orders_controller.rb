@@ -1,9 +1,10 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  load_resource only: %i(show update)
+  authorize_resource
   before_action :init_order, only: %i(create)
   before_action :show_cart, only: %i(new)
   before_action :show_history_orders, only: %i(index)
-  before_action :load_order, only: %i(show update)
   before_action :update_status, only: %i(update)
 
   def index; end
@@ -68,14 +69,6 @@ class OrdersController < ApplicationController
     @pagy, @orders = pagy current_user.orders.includes(:order_details)
                                       .by_status(params[:type])
                                       .newest
-  end
-
-  def load_order
-    @order = current_user.orders.find_by id: params[:id]
-    return if @order
-
-    flash[:danger] = t "not_found"
-    redirect_to root_path
   end
 
   def update_status

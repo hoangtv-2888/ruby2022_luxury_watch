@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
 
   rescue_from CanCan::AccessDenied, with: :access_denied
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
   protected
 
@@ -42,6 +43,11 @@ class ApplicationController < ActionController::Base
 
   def access_denied
     flash[:danger] = t "not_permission"
+    redirect_to root_path
+  end
+
+  def not_found
+    flash[:danger] = t "not_found"
     redirect_to root_path
   end
 end
