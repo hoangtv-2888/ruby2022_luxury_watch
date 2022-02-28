@@ -78,3 +78,28 @@ span.admin-page a{
 input.add_cart {
   margin-top: 10px;
 }
+
+.icon_delete {
+  width: 20px;
+}
+
+.top-admin-user {
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-admin-user a {
+  text-decoration: none !important;
+}
+
+.detail_user {
+  height: 330px !important;
+}
+
+.detail_user div{
+  padding-bottom: 10px;
+
+  strong {
+    margin-right: 10px;
+  }
+}

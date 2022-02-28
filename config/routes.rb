@@ -27,11 +27,13 @@ Rails.application.routes.draw do
 
     namespace :admin do
       root "users#index"
-      resources :users, only: %i(index update show)
+      resources :users, only: %i(index destroy show)
       resources :categories
       resources :products
       resources :orders
       resources :revenue_managements, only: %i(index)
+
+      get "/list-user-delete", to: "users#list_users_delete"
 
       get "/search-users", to: "users#search", as: "search_users"
     end

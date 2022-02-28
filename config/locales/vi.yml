@@ -49,7 +49,11 @@ vi:
   statistics_products: "Thống kê số lượng sản phẩm bán chạy"
   statistics_users: "Thống kê khách hàng đăng ký tài khoản"
   statistics: "Số liệu thống kê"
+  unlock_access: "Mở khóa quyền truy cập"
+  lock_access: "Khóa quyền truy cập"
+  search_user: "Tìm kiếm người dùng"
   user:
+    id: "ID"
     name: "Tên"
     email: "Địa chỉ email"
     phone: "Điện thoại"
@@ -132,6 +136,10 @@ vi:
         quantity: "Số lượng"
         images: "Hình ảnh"
   admin:
+    title: "Danh sách người dùng"
+    detail_user: "Chi tiết người dùng"
+    list_users_delete: "Danh sách người dùng đã xóa"
+    restore: "Khôi phục"
     categories:
       index:
         title: "Danh mục"

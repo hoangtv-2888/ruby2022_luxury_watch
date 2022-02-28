@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
+  acts_as_paranoid
   belongs_to :user
   belongs_to :discount, optional: true
   has_many :order_details, dependent: :destroy
