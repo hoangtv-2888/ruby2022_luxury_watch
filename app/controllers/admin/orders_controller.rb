@@ -2,8 +2,9 @@ class Admin::OrdersController < Admin::AdminController
   load_and_authorize_resource
 
   def index
-    @orders = Order.includes({order_details: [:product_detail]}, :user)
-                   .search(params[:str]).newest
+    @q = Order.includes({order_details: [:product_detail]}, :user)
+              .ransack(params[:q])
+    @orders = @q.result
     if valid_status? params[:find_status]
       @orders = @orders.public_send(params[:find_status].to_s)
     end

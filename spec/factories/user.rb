@@ -6,5 +6,6 @@ FactoryBot.define do
     address{Faker::Address.full_address}
     password{"tuong123"}
     password_confirmation{"tuong123"}
+    confirmed_at{Date.today}
   end
 end

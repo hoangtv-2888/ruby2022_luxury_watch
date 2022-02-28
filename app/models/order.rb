@@ -14,8 +14,6 @@ class Order < ApplicationRecord
   delegate :name, :email, to: :user, prefix: :user
   validates :user_name_at_order, presence: true
   validates :address_at_order, presence: true
-  scope :search_id,
-        ->(id){where("id = ?", id) if id}
   scope :by_status,
         ->(type){where("status = ?", type) if type}
 
@@ -24,17 +22,4 @@ class Order < ApplicationRecord
   end
 
   scope :newest, ->{order created_at: :desc}
-  scope :search, (lambda do |str|
-    if str
-      joins(:user)
-      .where(user: {name: str})
-      .or(search_by_id(str))
-    end
-  end)
-  scope :search_by_id, (lambda do |str|
-    if str
-      joins(:user)
-      .where(id: str)
-    end
-  end)
 end
