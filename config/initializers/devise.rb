@@ -16,4 +16,5 @@ Devise.setup do |config|
   config.unlock_keys = [ :email ]
   config.unlock_strategy = :both
   config.maximum_attempts = 5
+  config.last_attempt_warning = true
 end

@@ -50,6 +50,7 @@ en:
     not_admin: "You do not have permission to access this site"
     approve_order: "Order approval"
   user:
+    id: "ID"
     name: "Name"
     email: "Email"
     phone: "Phone"
@@ -114,6 +115,9 @@ en:
   invalid_format: "Invalid format"
   invalid_size: "Too larg size"
   all_product: "All products"
+  unlock_access: "Unlock access"
+  lock_access: "Lock access"
+  search_user: "Search user"
   activerecord:
     models:
       category: "Category"
@@ -130,6 +134,10 @@ en:
         quantity: "Quantity"
         images: "Image"
   admin:
+    title: "List users"
+    detail_user: "Detail user"
+    list_users_delete: "List users delete"
+    restore: "Restore"
     categories:
       index:
         title: "Category"

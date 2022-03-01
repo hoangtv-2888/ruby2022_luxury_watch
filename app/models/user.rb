@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  acts_as_paranoid
   PROPERTIES = %i(name email address phone password
                   password_confirmation remember_me).freeze
   devise :database_authenticatable, :registerable, :validatable,
