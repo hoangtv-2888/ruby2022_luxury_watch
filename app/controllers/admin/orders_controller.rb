@@ -51,6 +51,6 @@ class Admin::OrdersController < Admin::AdminController
   end
 
   def send_mail order
-    SendAllMailJob.set(wait: Settings.number_30.seconds).perform_later order
+    UserMailer.order_status(order).deliver_now
   end
 end

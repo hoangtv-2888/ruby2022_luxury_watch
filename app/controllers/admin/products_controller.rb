@@ -44,6 +44,15 @@ class Admin::ProductsController < Admin::AdminController
 
   def show; end
 
+  def destroy
+    if @product.destroy
+      flash[:success] = t "success"
+    else
+      flash[:danger] = t "error"
+    end
+    redirect_to admin_products_path
+  end
+
   private
 
   def product_params

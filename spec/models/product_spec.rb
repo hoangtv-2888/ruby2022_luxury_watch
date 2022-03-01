@@ -28,11 +28,11 @@ RSpec.describe Product, type: :model do
   end
 
   describe "Scope" do
-    let!(:category_1){FactoryBot.create :category}
-    let!(:category_2){FactoryBot.create :category}
+    let!(:category_1){FactoryBot.create :category, name: "cate1"}
+    let!(:category_2){FactoryBot.create :category, name: "cate2"}
     let!(:product_1){FactoryBot.create :product, category_id: category_1.id}
-    let!(:product_2){FactoryBot.create :product, name: "casio"}
-    let!(:product_3){FactoryBot.create :product, name: "abc"}
+    let!(:product_2){FactoryBot.create :product, name: "casio1"}
+    let!(:product_3){FactoryBot.create :product, name: "sky 1"}
     let!(:product_size_1){FactoryBot.create :product_size, size: 38}
     let!(:product_color_1){FactoryBot.create :product_color}
     let!(:product_size_2){FactoryBot.create :product_size, size: 39}
