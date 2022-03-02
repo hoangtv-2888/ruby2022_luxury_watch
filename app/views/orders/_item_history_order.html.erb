@@ -1,7 +1,7 @@
 <tr id="item_history_<%= order.id %>">
   <td>
     <% order.order_details.each do |odt| %>
-      <%= odt.product_detail.product_name %>|
+      <%= odt.product_detail.product_name %>
     <% end %>
   </td>
   <td><%= order.order_details.sum("quantity") %></td>

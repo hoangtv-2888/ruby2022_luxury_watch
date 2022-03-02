@@ -103,3 +103,13 @@ input.add_cart {
     margin-right: 10px;
   }
 }
+
+.search-orders form {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  input {
+    margin-right: 10px;
+  }
+}

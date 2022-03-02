@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     post "/update_cart", to: "carts#update"
     delete "/remove_from_cart/:id", to: "carts#destroy", as: "remove_from_cart"
     get "/check_code", to: "discounts#show", as: "check_code"
-    get "/history-order/:type", to: "orders#index", as: "history_orders"
     as :user do
       get "/login", to: "devise/sessions#new"
       post "/login", to: "devise/sessions#create"
@@ -23,7 +22,7 @@ Rails.application.routes.draw do
     resources :products
     resources :homes, only: :index
     resources :comment_rates, only: %i(create destroy)
-    resources :orders, except: %i(index destroy edit)
+    resources :orders, except: %i(destroy edit)
 
     namespace :admin do
       root "users#index"
@@ -34,7 +33,6 @@ Rails.application.routes.draw do
       resources :revenue_managements, only: %i(index)
 
       get "/list-user-delete", to: "users#list_users_delete"
-
       get "/search-users", to: "users#search", as: "search_users"
     end
   end

@@ -59,7 +59,7 @@ $( document ).ready(function() {
 });
 
 function check_quantity_product(pro_quantity, quantity, obj) {
-  if (quantity > 99) {
+  if (quantity > 99 || quantity < 1) {
     obj.val("1")
     alert(I18n.t("not_more_pro"));
     return;

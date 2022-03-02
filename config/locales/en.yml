@@ -118,6 +118,7 @@ en:
   unlock_access: "Unlock access"
   lock_access: "Lock access"
   search_user: "Search user"
+  search_order: "Search all orders"
   activerecord:
     models:
       category: "Category"

@@ -17,6 +17,10 @@ class Order < ApplicationRecord
   validates :address_at_order, presence: true
   scope :by_status,
         ->(type){where("status = ?", type) if type}
+  scope :by_product, (lambda do |pro_ids|
+    left_joins(order_details: {product_detail: [:product]})
+    .where(product: {id: pro_ids})
+  end)
 
   def status_buy_again?
     delivered? || returned? || rejected?
