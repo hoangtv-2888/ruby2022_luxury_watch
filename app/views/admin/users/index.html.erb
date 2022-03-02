@@ -2,9 +2,9 @@
   <h1 class="page-header"><%= t "dashboard" %></h1>
   <div class="top-admin-user">
     <%= link_to t("admin.list_users_delete"), admin_list_user_delete_path %>
-    <%= search_form_for @q, url: admin_search_users_path, remote: true, method: :get, class: "form-inline" do %>
-      <%= text_field_tag :name, "", placeholder: t("search_user"), class: "form-control" %>
-      <%= submit_tag t("search"), class: "btn btn-primary mb-2" %>
+    <%= search_form_for @q, url: admin_users_path, method: :get, class: "form-inline" do |f| %>
+      <%= f.search_field :name_cont, placeholder: t("search_user"), class: "form-control" %>
+      <%= f.submit t("search"), class: "btn btn-primary mb-2" %>
     <% end %>
   </div>
   <div class="table-responsive">
@@ -12,9 +12,9 @@
       <thead>
         <tr>
           <th><%= t "user.id" %></th>
-          <th><%= t "user.name" %></th>
-          <th><%= t "user.email" %></th>
-          <th><%= t "user.phone" %></th>
+          <th><%= sort_link @q, :name, t("user.name"), default_name: :desc %></th>
+          <th><%= sort_link @q, :email, t("user.email"), default_email: :desc %></th>
+          <th><%= sort_link @q, :phone, t("user.phone"), default_email: :desc %></th>
           <th><%= t "user.current_sign_in_ip" %></th>
           <th><%= t "user.last_sign_in_ip" %></th>
           <th><%= t "user.sign_in_count" %></th>

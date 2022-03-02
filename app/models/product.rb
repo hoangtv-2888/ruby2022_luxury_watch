@@ -66,6 +66,10 @@ class Product < ApplicationRecord
     left_joins(:product_detail)
     .group(:id).order("SUM(product_details.quantity) ASC")
   end)
+  scope :by_product_of_order, (lambda do |user_id|
+    left_joins(product_detail: {order_details: [:order]})
+    .where(order: {user_id: user_id})
+  end)
 
   def display_image image
     image.variant(resize: Settings.resize_images).processed if image.present?

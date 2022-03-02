@@ -120,6 +120,7 @@ vi:
   invalid_format: "Kiểu dữ liệu không hợp lệ"
   invalid_size: "Dung lượng quá lớn"
   all_product: "Tất cả sản phẩm"
+  search_order: "Tìm kiếm đơn hàng"
   activerecord:
     models:
       category: "Danh mục"

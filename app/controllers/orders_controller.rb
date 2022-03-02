@@ -4,10 +4,17 @@ class OrdersController < ApplicationController
   authorize_resource
   before_action :init_order, only: %i(create)
   before_action :show_cart, only: %i(new)
-  before_action :show_history_orders, only: %i(index)
   before_action :update_status, only: %i(update)
 
-  def index; end
+  def index
+    if params[:q] && params[:q][:name_cont]
+      search_orders
+    else
+      @q = current_user.orders.includes(:order_details).ransack(params[:q])
+      @orders = @q.result
+    end
+    @pagy, @orders = pagy @orders, items: Settings.number_10
+  end
 
   def new; end
 
@@ -65,12 +72,6 @@ class OrdersController < ApplicationController
     redirect_to root_url
   end
 
-  def show_history_orders
-    @pagy, @orders = pagy current_user.orders.includes(:order_details)
-                                      .by_status(params[:type])
-                                      .newest
-  end
-
   def update_status
     begin
       if @order.status_buy_again?
@@ -81,5 +82,13 @@ class OrdersController < ApplicationController
     end
   rescue StandardError => e
     handle_exception e
+  end
+
+  def search_orders
+    @q = Product.by_product_of_order(current_user.id)
+                .ransack(params[:q])
+    pro_ids = @q.result.pluck(:product_id)
+    @orders = current_user.orders
+                          .by_product(pro_ids)
   end
 end

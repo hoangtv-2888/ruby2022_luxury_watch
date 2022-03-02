@@ -1,14 +1,25 @@
 <div class="history_order container-fluid">
   <div class="container">
     <nav class="navbar navbar-default">
-      <ul class="nav navbar-nav">
-        <% Order.statuses.each do |key, val| %>
-          <li class=<%= active_class_order val %>>
-            <%= link_to t("#{key}"), history_orders_path(val) %>
+      <%= search_form_for @q, url: homes_path do |f| %>
+        <ul class="nav navbar-nav filter_orders">
+          <li>
+            <%= link_to t("all")%>
           </li>
-        <% end %>
-      </ul>
+          <% Order.statuses.each do |key, val| %>
+            <li>
+              <%= link_to t("#{key}"), q: {status_cont: val} %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
     </nav>
+    <div class="search-orders">
+      <%= search_form_for Product.ransack(), url: orders_path, method: :get do |f| %>
+        <%= f.search_field :name_cont, placeholder: t("search_order"), class: "form-control" %>
+        <%= f.submit t("search"), class: "btn btn-primary mb-2" %>
+      <% end %>
+    </div>
     <div class="list-product box-order panel panel-primary">
       <div class="panel-heading"><%= t("my_order") %></div>
       <div class="panel-body">
