@@ -19,9 +19,9 @@ class OrdersController < ApplicationController
   def new; end
 
   def create
-    create_order_detail
     ActiveRecord::Base.transaction do
       @order.save!
+      CreateOrderDetailJob.perform_now @order, current_carts
     end
     handle_success_order
   rescue NoMethodError
