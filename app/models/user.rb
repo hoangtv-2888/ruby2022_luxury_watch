@@ -4,7 +4,8 @@ class User < ApplicationRecord
                   password_confirmation remember_me).freeze
   devise :database_authenticatable, :registerable, :validatable,
          :confirmable, :recoverable, :rememberable,
-         :trackable, :timeoutable, :lockable
+         :trackable, :timeoutable, :lockable,
+         :omniauthable, omniauth_providers: %i(google_oauth2)
   has_many :orders, dependent: :destroy
   has_many :comment_rates, dependent: :destroy
   has_many :products, through: :comment_rates
@@ -18,6 +19,18 @@ class User < ApplicationRecord
             length: {maximum: Settings.length_digit_255}
   scope :search_by_name,
         ->(name){where("LOWER(name) LIKE ?", "%#{name.downcase}%") if name}
+
+  class << self
+    def from_omniauth auth
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.email = auth.info.email
+        user.password = Devise.friendly_token[0, 20]
+        user.name = auth.info.name
+        user.skip_confirmation!
+        user.save
+      end
+    end
+  end
 
   private
   def downcase_email

@@ -1,5 +1,6 @@
 require "sidekiq/web"
 Rails.application.routes.draw do
+  devise_for :users, only: :omniauth_callbacks, controllers: {omniauth_callbacks: "users/omniauth_callbacks"}
   scope "(:locale)", locale: /en|vi/ do
     mount Sidekiq::Web => "/sidekiq"
     root "homes#index"
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
       delete "/logout", to: "devise/sessions#destroy"
       get "/signup", to: "devise/registrations#new"
     end
-    devise_for :users
+    devise_for :users, skip: :omniauth_callbacks
     resources :account_activations, only: :edit
     resources :password_resets, except: %i(index destroy)
     resources :products

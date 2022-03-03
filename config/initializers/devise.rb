@@ -17,4 +17,13 @@ Devise.setup do |config|
   config.unlock_strategy = :both
   config.maximum_attempts = 5
   config.last_attempt_warning = true
+
+  OmniAuth.config.allowed_request_methods = [:post, :get]
+  OmniAuth.config.silence_get_warning = true
+
+  config.omniauth :google_oauth2, ENV["GOOGLE_APP_ID"], ENV["GOOGLE_APP_SECRET"], {
+    scope: "userinfo.profile,userinfo.email",
+    access_type: "offline",
+    approval_prompt: "force"
+  }
 end
