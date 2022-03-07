@@ -1,6 +1,14 @@
-<div class="container statistics">
-  <h3 class="text-center"><%= t "statistics_products" %></h3>
-  <%= line_chart @orders %>
-  <h3 class="text-center"><%= t "statistics_users" %></h3>
-  <%= column_chart @users %>
+<div class="container">
+  <div class="statistics">
+    <%= line_chart @orders,
+        title: t("statistics_products"),
+        xtitle: t("day_of_the_week"),
+        ytitle: t("quantity") %>
+  </div>
+  <div class="statistics">
+    <%= line_chart @users,
+        title: t("statistics_users"),
+        xtitle: t("day_of_the_week"),
+        ytitle: t("quantity") %>
+  </div>
 </div>

@@ -60,4 +60,12 @@ module CartsHelper
   def check_quantity_cart? quantity, pro_quantity
     pro_quantity < quantity
   end
+
+  def add_cart id, quantity = Settings.quantity_defaut_1
+    current_carts[id] = if current_carts.key?(id)
+                          current_carts[id] + quantity
+                        else
+                          quantity
+                        end
+  end
 end

@@ -74,11 +74,9 @@ class OrdersController < ApplicationController
 
   def update_status
     begin
-      if @order.status_buy_again?
-        return if @order.wait!
-      elsif @order.wait?
-        return if @order.rejected!
-      end
+      return buy_again_order if @order.status_buy_again?
+
+      return @order.rejected! if @order.wait?
     end
   rescue StandardError => e
     handle_exception e
@@ -90,5 +88,12 @@ class OrdersController < ApplicationController
     pro_ids = @q.result.pluck(:product_id)
     @orders = current_user.orders
                           .by_product(pro_ids)
+  end
+
+  def buy_again_order
+    @order.order_details.each do |odt|
+      add_cart odt.product_detail_id, odt.quantity
+    end
+    redirect_to cart_path
   end
 end

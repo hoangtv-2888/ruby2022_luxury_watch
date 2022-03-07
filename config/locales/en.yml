@@ -40,7 +40,7 @@ en:
                   please ignore this email and your password will stay as it is."
   submit: "Submit"
   dashboard: "Dashboard"
-  statistics_products: "Statistics of the number of best-selling products"
+  statistics_products: "Statistics of the number of products sold in the week"
   statistics_users: "Statistics of customers who register for an account"
   statistics: "Statistics"
   admin:
@@ -255,3 +255,8 @@ en:
   to_price: "To price"
   by_new: "Newest"
   created_at: "Created at"
+  you_sure: "Are you sure?"
+  day_of_the_week: "Day of the week"
+  notify_order_admin: "You have an order that needs to be confirmed, %{link_notify_order_admin}"
+  link_notify_order_admin: "details here"
+  notify_approve_order: "Order Confirmation Notice"

@@ -65,14 +65,6 @@ class CartsController < ApplicationController
                                        end
   end
 
-  def add_cart id
-    current_carts[id] = if current_carts.key?(id)
-                          current_carts[id] + Settings.quantity_defaut_1
-                        else
-                          Settings.quantity_defaut_1
-                        end
-  end
-
   def load_product
     @product_detail = ProductDetail.find_by(id: params[:product_detail_id])
     return if @product_detail.present?

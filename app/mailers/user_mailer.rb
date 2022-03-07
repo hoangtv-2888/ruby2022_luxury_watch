@@ -19,4 +19,9 @@ class UserMailer < ApplicationMailer
     mail to: @order.user_email,
          subject: t("status_change." << @order.status.to_s)
   end
+
+  def notity_admin user
+    @user = user
+    mail to: @user.email, subject: t("notify_approve_order")
+  end
 end

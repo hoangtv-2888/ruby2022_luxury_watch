@@ -1,0 +1,6 @@
+<%= t "hi" %> <%= @user.name %>,
+<p>
+  <%= sanitize t("notify_order_admin",
+               link_notify_order_admin: link_to(t("link_notify_order_admin"),
+               admin_orders_url))%>
+</p>
